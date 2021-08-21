@@ -1,18 +1,32 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-
-# Other files and folders
+.DS_Store
+.buildpath
+.hgignore.swp
+.project
+.orig
+.swp
+.idea/
 .settings/
+.vscode/
+vender/
+log/
+composer.lock
+gitpush.sh
+pkg/
+bin/
+cbuild
+*/.DS_Store
+config/config.toml
+main
+.vscode
+go.sum
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+document/easygoadmin.gin.layui.sql
+widget/
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+node_modules/
+src/
+dist/
+package.json
+package-lock.json
+webpack.config.js
+.svn

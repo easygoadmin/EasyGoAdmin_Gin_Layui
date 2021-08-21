@@ -1,3 +1,4 @@
+{{define "footer"}}
 <!-- JS部分 -->
 <script type="text/javascript">
     var url = window.location.pathname.substring(1);
@@ -5,3 +6,4 @@
     var jsUrl = "/resource/module/easygoadmin_" + item[0] + ".js";
     document.write("<script src='" + jsUrl + "'><\/script>");
 </script>
+{{end}}

@@ -1,8 +1,8 @@
-{{define "layout/main.html"}}
+{{define "public/layout.html"}}
 <!DOCTYPE html>
 <html>
 <!-- 引入头部 -->
-{{include "/public/header.html" .}}
+{{template "header"}}
 <body>
 
 <!-- 主体部分开始 -->
@@ -17,7 +17,7 @@
 <!-- 主体部分结束 -->
 
 <!-- 引入脚部 -->
-{{include "/public/footer.html" .}}
+{{template "footer"}}
 </body>
 </html>
 {{end}}

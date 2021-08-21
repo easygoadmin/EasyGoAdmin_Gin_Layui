@@ -19,5 +19,5 @@ type levelCtl struct{}
 func (ctl *levelCtl) Index(c *gin.Context) {
 	fmt.Println("测试路由")
 	// 渲染模板
-	response.BuildTpl(c, "/level/index.html").WriteTpl()
+	response.BuildTpl(c, "level/index.html").WriteTpl()
 }
