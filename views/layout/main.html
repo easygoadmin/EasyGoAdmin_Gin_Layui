@@ -1,0 +1,21 @@
+{{define "layout/main.html"}}
+
+{{.title}}
+
+{{/*    自定义style*/}}
+
+{{block "styles" .}}{{end}}
+
+{{.content_before}}
+
+{{/*content内容部分*/}}
+
+{{block "content" .}}{{end}}
+
+{{.content_after}}
+
+{{/*自定义script*/}}
+
+{{block "scripts" .}}{{end}}
+
+{{end}}

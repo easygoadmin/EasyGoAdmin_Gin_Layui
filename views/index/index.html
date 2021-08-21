@@ -1,0 +1,34 @@
+{{define "index/index.html"}}
+
+{{/*继承main.html*/}}
+
+    {{template "layout/main.html" .}}
+
+{{end}}
+
+{{define "content"}}
+
+{{.content_text}}
+
+{{end}}
+
+{{define "styles"}}
+<style>
+.c{
+
+color: red;
+
+font-size:32px;
+
+}
+</style>
+
+{{end}}
+
+{{define "scripts"}}
+
+<script>
+ console.log("script继承部分")
+</script>
+
+{{end}}
