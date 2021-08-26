@@ -8,10 +8,23 @@ package main
 
 import (
 	_ "easygoadmin/boot"
+	cfg "easygoadmin/library/cfg"
 	_ "easygoadmin/router"
+	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// 开始调试模式
+	gin.SetMode("debug")
+
+	// 实例化配置
+	config := cfg.Instance()
+	if config == nil {
+		fmt.Printf("参数错误")
+		return
+	}
+
 	//r := gin.Default()
 	//// 指定模板加载目录
 	//r.LoadHTMLGlob("views/**/*")

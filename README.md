@@ -32,7 +32,7 @@
 ## 👷 开发者信息
 * 系统名称：EasyGoAdmin敏捷开发框架GoFrame+Layui版本
 * 作者：半城风雨
-* 作者QQ：[1175401194](http://wpa.qq.com/msgrd?v=3&amp;uin=1175401194&amp;site=qq&amp;menu=yes)
+* 作者QQ：[1260211623](http://wpa.qq.com/msgrd?v=3&amp;uin=1260211623&amp;site=qq&amp;menu=yes)
 * 官网网址：[http://www.easygoadmin.vip/](http://www.easygoadmin.vip/)
 * 文档网址：[http://docs.gin.layui.easygoadmin.vip/](http://docs.gin.layui.easygoadmin.vip/)
 
@@ -46,7 +46,7 @@ admin | 123456| 演示环境无法进行修改删除操作
 
 ## 👷 技术支持
 
-[技术支持QQ：1175401194](http://wpa.qq.com/msgrd?v=3&amp;uin=1175401194&amp;site=qq&amp;menu=yes)
+[技术支持QQ：1260211623](http://wpa.qq.com/msgrd?v=3&amp;uin=1260211623&amp;site=qq&amp;menu=yes)
 
 ## 📌 版本说明
 版本名称 | 版本说明 | 版本地址
@@ -72,19 +72,18 @@ Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前�
 │   ├── dao         // DAO层
 │   ├── model       // 模型层
 │   └── service     // 服务层
-│   └── utils       // 系统工具
-│   └── widget      // 核心组件
 ├── boot
 ├── config          // 系统配置
 ├── docker
 ├── document        // 文档目录
 ├── i18n            // 国际化
 ├── library         // 类库
-├── packed
+├── middleware      // 中间件
 ├── public          // 资源目录
 ├── router          // 路由
-├── template        // 模板
-├── Dockerfile
+├── utils           // 系统工具
+├── views           // 模板
+├── widget          // 核心组件
 ├── go.mod
 └── main.go
 ```

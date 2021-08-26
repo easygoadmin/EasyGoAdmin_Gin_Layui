@@ -1,11 +1,13 @@
+{{define "public/form.html"}}
 <!DOCTYPE html>
 <html>
 <!-- 引入头部 -->
-{{include "/public/header.html" .}}
+{{template "header"}}
 <body class="bg-white">
 <!-- 正文内容 -->
-{{include .mainTpl .}}
+    {{block "content2" .}}{{end}}
 <!-- 引入脚部 -->
-{{include "/public/footer.html" .}}
+{{template "footer"}}
 </body>
 </html>
+{{end}}
