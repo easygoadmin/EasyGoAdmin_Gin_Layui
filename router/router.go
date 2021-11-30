@@ -287,6 +287,12 @@ func init() {
 		configdata.POST("/status", controller.ConfigData.Status)
 	}
 
+	/* 网站设置 */
+	website := router.Group("website")
+	{
+		website.Any("/index", controller.Website.Index)
+	}
+
 	/* 演示一 */
 	example := router.Group("example")
 	{

@@ -60,7 +60,7 @@ func (c *indexCtl) Index(ctx *gin.Context) {
 }
 
 func (c *indexCtl) Main(ctx *gin.Context) {
-	response.BuildTpl(ctx, "main.html").WriteTpl()
+	response.BuildTpl(ctx, "welcome.html").WriteTpl()
 }
 
 // 个人中心

@@ -84,17 +84,15 @@
             <ul class="layui-nav layui-nav-tree {{if gt $key 0}}layui-hide{{end}}" nav-id="xt{{$key}}" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
                 {{range $ko, $vo := $val.Children}}
                 <li  class="layui-nav-item">
-                    {{if ne $vo.Children nil}}
-                    <a><i class="layui-icon {{$vo.Icon}}"></i>&emsp;<cite>{{$vo.Name}}</cite></a>
-                    {{else}}
+                    {{if $vo.Children}}
                     <a {{if eq $vo.Target 2}}href="{{$vo.Url}}" target="_blank" {{else}}lay-href="{{$vo.Url}}"{{end}}><i class="layui-icon {{$vo.Icon}}"></i>&emsp;<cite>{{$vo.Name}}</cite></a>
+                    {{else}}
+                    <a><i class="layui-icon {{$vo.Icon}}"></i>&emsp;<cite>{{$vo.Name}}</cite></a>
                     {{end}}
-                    {{if ne $vo.Children nil}}
+                    {{if $vo.Children}}
                     <dl class="layui-nav-child">
                     {{range $k, $v := $vo.Children}}
-                        {{if eq $v.Children nil}}
-                        <dd><a {{if eq $v.Target 2}}href="{{$v.Url}}" target="_blank" {{else}}lay-href="{{$v.Url}}"{{end}}>{{$v.Name}}</a></dd>
-                        {{else}}
+                        {{if $v.Children}}
                         <dd>
                             <a>{{$v.Name}}</a>
                             <dl class="layui-nav-child">
@@ -103,6 +101,8 @@
                                 {{end}}
                             </dl>
                         </dd>
+                        {{else}}
+                        <dd><a {{if eq $v.Target 2}}href="{{$v.Url}}" target="_blank" {{else}}lay-href="{{$v.Url}}"{{end}}>{{$v.Name}}</a></dd>
                         {{end}}
                     {{end}}
                     {{end}}
@@ -118,7 +118,7 @@
     <div class="layui-body"></div>
     <!-- 底部 -->
     <div class="layui-footer layui-text">
-        copyright © 2017~2021 <a href="http://www.easygoadmin.vip" target="_blank">easygoadmin.vip</a> all rights reserved.
+        copyright © 2019~2021 <a href="http://www.easygoadmin.vip" target="_blank">easygoadmin.vip</a> all rights reserved.
         <span class="pull-right">版本号：v1.0.0</span>
     </div>
 </div>
