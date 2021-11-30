@@ -1,0 +1,16 @@
+{{define "content"}}
+<div class="layui-col-md3">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 10px;">
+            {{block "config" .}}{{end}}
+        </div>
+    </div>
+</div>
+<div class="layui-col-md9">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 10px;">
+            {{block "configData" .}}{{end}}
+        </div>
+    </div>
+</div>
+{{end}}

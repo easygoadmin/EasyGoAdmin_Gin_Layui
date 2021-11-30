@@ -43,8 +43,8 @@ layui.use(['func'], function () {
             }}
             , {field: 'note', width: 200, title: '备注', align: 'center'}
             , {field: 'sort', width: 80, title: '排序', align: 'center'}
-            , {field: 'createTime', width: 180, title: '添加时间', align: 'center'}
-            , {field: 'updateTime', width: 180, title: '更新时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center'}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
             , {width: 220, title: '功能操作', align: 'left', toolbar: '#toolBar'}
         ];
 

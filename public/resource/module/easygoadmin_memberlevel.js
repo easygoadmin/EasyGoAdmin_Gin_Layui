@@ -26,8 +26,8 @@ layui.use(['func'], function () {
             , {field: 'id', width: 80, title: 'ID', align: 'center', sort: true, fixed: 'left'}
             , {field: 'name', width: 200, title: '分组名称', align: 'center'}
             , {field: 'sort', width: 120, title: '排序', align: 'center'}
-            , {field: 'createTime', width: 200, title: '创建时间', align: 'center', sort: true}
-            , {field: 'updateTime', width: 200, title: '更新时间', align: 'center', sort: true}
+            , {field: 'create_time', width: 200, title: '创建时间', align: 'center', sort: true}
+            , {field: 'update_time', width: 200, title: '更新时间', align: 'center', sort: true}
             , {fixed: 'right', width: 150, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

@@ -70,7 +70,7 @@ layui.use(['func'], function () {
                     return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.statusName+'</span>';
                 }}
             , {field: 'errorMsg', width: 100, title: '错误消息', align: 'center'}
-            , {field: 'createTime', width: 180, title: '创建时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '创建时间', align: 'center'}
             , {fixed: 'right', width: 100, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

@@ -46,16 +46,15 @@ layui.use(['func'], function () {
             , {field: 'pAdcode', width: 150, title: '父级地理编号', align: 'center'}
             , {field: 'adcode', width: 150, title: '地理编号', align: 'center'}
             , {field: 'sort', width: 100, title: '排序号', align: 'center'}
-            , {field: 'createUserName', width: 100, title: '添加人', align: 'center'}
-            , {field: 'createTime', width: 180, title: '创建时间', align: 'center'}
-            , {width: 200, title: '功能操作', align: 'left', toolbar: '#toolBar'}
+            , {field: 'create_time', width: 180, title: '创建时间', align: 'center'}
+            , {width: 230, title: '功能操作', align: 'left', toolbar: '#toolBar'}
         ];
 
         //【渲染TABLE】
         func.treetable(cols, "tableList");
 
         //【设置弹框】
-        func.setWin("城市",700, 400);
+        func.setWin("城市",750, 400);
 
     }
 });

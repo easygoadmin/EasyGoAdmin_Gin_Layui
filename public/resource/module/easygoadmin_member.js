@@ -85,7 +85,7 @@ layui.use(['func', 'form'], function () {
                     }
                     return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.sourceName+'</span>';
                 }}
-            , {field: 'createTime', width: 180, title: '注册时间', align: 'center',templet:'<div>{{ layui.util.toDateString(d.create_time, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+            , {field: 'create_time', width: 180, title: '注册时间', align: 'center',templet:'<div>{{ layui.util.toDateString(d.create_time, "yyyy-MM-dd HH:mm:ss") }}</div>'}
             , {fixed: 'right', width: 150, title: '功能操作', align: 'left', toolbar: '#toolBar'}
         ];
 

@@ -1,89 +1,57 @@
-/**
- *
- * @author 摆渡人
- * @since 2021/8/20
- * @File : level
- */
+// +----------------------------------------------------------------------
+// | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2021 EasyGoAdmin深圳研发中心
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: 半城风雨 <easygoadmin@163.com>
+// +----------------------------------------------------------------------
+// | 免责声明:
+// | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
+// | 反我国法律法规的一切平台研发，任何单位和个人使用本软件框架用于产品研发而产生的任何意外
+// | 、疏忽、合约毁坏、诽谤、版权或知识产权侵犯及其造成的损失 (包括但不限于直接、间接、附带
+// | 或衍生的损失等)，本团队不承担任何法律责任。本软件框架只能用于公司和个人内部的法律所允
+// | 许的合法合规的软件产品研发，详细声明内容请阅读《框架免责声明》附件；
+// +----------------------------------------------------------------------
+
 package model
 
-import (
-	"easygoadmin/library/db"
-	"time"
-)
+import "easygoadmin/utils"
 
-//映射数据表
-func TableName() string {
-	return "sys_level"
-}
-
-// 对象结构体
 type Level struct {
-	Id         int       `xorm:"not null pk autoincr comment('职级ID') INT(11)"    json:"id"` // 主键ID
-	Name       string    `xorm:"name"        json:"name"`                                   // 职级名称
-	Status     int       `xorm:"status"      json:"status"`                                 // 状态：1正常 2停用
-	Sort       int       `xorm:"sort"        json:"sort"`                                   // 显示顺序
-	CreateUser int       `xorm:"create_user" json:"createUser"`                             // 添加人
-	CreateTime time.Time `xorm:"create_time" json:"createTime"`                             // 创建时间
-	UpdateUser int       `xorm:"update_user" json:"updateUser"`                             // 更新人
-	UpdateTime time.Time `xorm:"update_time" json:"updateTime"`                             // 更新时间
-	Mark       int       `xorm:"mark"        json:"mark"`                                   // 有效标识
+	Id         int    `json:"id" xorm:"not null pk autoincr comment('主键ID') INT(11)"`
+	Name       string `json:"name" xorm:"not null comment('职级名称') index VARCHAR(30)"`
+	Status     int    `json:"status" xorm:"not null default 1 comment('状态：1正常 2停用') TINYINT(1)"`
+	Sort       int    `json:"sort" xorm:"not null default 125 comment('显示顺序') INT(11)"`
+	CreateUser int    `json:"create_user" xorm:"default 0 comment('添加人') INT(11)"`
+	CreateTime int64  `json:"create_time" xorm:"default 0 comment('创建时间') INT(11)"`
+	UpdateUser int    `json:"update_user" xorm:"default 0 comment('更新人') INT(11)"`
+	UpdateTime int64  `json:"update_time" xorm:"default 0 comment('更新时间') INT(11)"`
+	Mark       int    `json:"mark" xorm:"not null default 1 comment('有效标识') TINYINT(1)"`
 }
 
-// 分页查询
-type LevelPageReq struct {
-	Name  string `form:"name"`  // 职级名称
-	Page  int    `form:"page"`  // 页码
-	Limit int    `form:"limit"` // 每页数
-}
-
-// 添加职级
-type LevelAddReq struct {
-	Name   string `form:"name"  binding:"required#职级名称不能为空"`
-	Status int    `form:"status"    binding:"required#职级状态不能为空"`
-	Sort   int    `form:"sort"  binding:"required#显示顺序不能为空"`
-}
-
-// 编辑职级
-type LevelUpdateReq struct {
-	Id     int    `form:"id" binding:"required#主键ID不能为空"`
-	Name   string `form:"name"  binding:"required#职级名称不能为空"`
-	Status int    `form:"status"    binding:"required#职级状态不能为空"`
-	Sort   int    `form:"sort"  binding:"required#显示顺序不能为空"`
-}
-
-// 删除职级
-type LevelDeleteReq struct {
-	Ids string `form:"ids"  binding:"required#请选择要删除的数据记录"`
-}
-
-// 设置状态
-type LevelStatusReq struct {
-	Id     int `form:"id" binding:"required#主键ID不能为空"`
-	Status int `form:"status"    binding:"required#职级状态不能为空"`
-}
-
-// 根据结构体中已有的非空数据来获得单条数据
-func (r *Level) FindOne() (bool, error) {
-	return db.Instance().Engine().Table(TableName()).Get(r)
+// 根据条件查询单条数据
+func (r *Level) Get() (bool, error) {
+	return utils.XormDb.Get(r)
 }
 
 // 插入数据
 func (r *Level) Insert() (int64, error) {
-	return db.Instance().Engine().Table(TableName()).Insert(r)
+	return utils.XormDb.Insert(r)
 }
 
 // 更新数据
 func (r *Level) Update() (int64, error) {
-	return db.Instance().Engine().Table(TableName()).ID(r.Id).Update(r)
+	return utils.XormDb.Id(r.Id).Update(r)
 }
 
 // 删除
 func (r *Level) Delete() (int64, error) {
-	return db.Instance().Engine().Table(TableName()).ID(r.Id).Delete(r)
+	return utils.XormDb.Id(r.Id).Delete(&Level{})
 }
 
-////批量删除
-//func (r *Level) BatchDelete(ids ...int64) (int64, error) {
-//	return 0, nil
-//	//return db.Instance().Engine().Table(TableName()).In("id", ids).Delete(r)
-//}
+//批量删除
+func (r *Level) BatchDelete(ids ...int64) (int64, error) {
+	return utils.XormDb.In("id", ids).Delete(&Level{})
+}

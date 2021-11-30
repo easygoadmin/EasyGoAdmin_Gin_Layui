@@ -62,8 +62,8 @@ layui.use(['func'], function () {
             }}
             , {field: 'sendNum', width: 100, title: '发送次数', align: 'center'}
             , {field: 'note', width: 200, title: '发送备注', align: 'center'}
-            , {field: 'createTime', width: 180, title: '添加时间', align: 'center'}
-            , {field: 'updateTime', width: 180, title: '更新时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center'}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
             , {fixed: 'right', width: 100, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 
