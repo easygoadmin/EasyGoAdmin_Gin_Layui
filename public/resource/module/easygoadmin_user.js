@@ -59,8 +59,8 @@ layui.use(['func'], function () {
             , {field: 'email', width: 200, title: '邮箱地址', align: 'center'}
             , {field: 'birthday', width: 120, title: '出生日期', align: 'center'}
             , {field: 'sort', width: 100, title: '排序号', align: 'center'}
-            , {field: 'create_time', width: 180, title: '创建时间', align: 'center'}
-            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.update_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {fixed: 'right', width: 250, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

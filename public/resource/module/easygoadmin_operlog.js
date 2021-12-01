@@ -70,7 +70,7 @@ layui.use(['func'], function () {
                     return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.statusName+'</span>';
                 }}
             , {field: 'errorMsg', width: 100, title: '错误消息', align: 'center'}
-            , {field: 'create_time', width: 180, title: '创建时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {fixed: 'right', width: 100, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

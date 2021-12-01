@@ -11,7 +11,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">所属广告位：</label>
 			<div class="layui-input-inline">
-				{{select "ad_sort_id|1|广告位|name|id" .adSortList .info.AdSortId}}
+				{{select "adSortId|1|广告位|name|id" .adSortList .info.AdSortId}}
 			</div>
 		</div>
 	</div>
@@ -19,13 +19,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">开始时间：</label>
 			<div class="layui-input-inline">
-				{{date "start_time|1|开始时间|datetime" .info.StartTime}}
+				{{date "startTime|1|开始时间|datetime" .info.StartTime}}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">结束时间：</label>
 			<div class="layui-input-inline">
-				{{date "end_time|1|结束时间|datetime" .info.EndTime}}
+				{{date "endTime|1|结束时间|datetime" .info.EndTime}}
 			</div>
 		</div>
 	</div>

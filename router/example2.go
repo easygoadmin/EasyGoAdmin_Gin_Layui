@@ -16,77 +16,35 @@
 // +----------------------------------------------------------------------
 
 /**
- * 代码生成器-控制器
+ * 演示二-路由
  * @author 半城风雨
- * @since 2021/11/15
- * @File : generate
+ * @since 2021-12-01
+ * @File : example2
  */
-package controller
+package router
 
 import (
-	"easygoadmin/app/dto"
-	"easygoadmin/app/service"
-	"easygoadmin/utils/common"
-	"easygoadmin/utils/gconv"
-	"easygoadmin/utils/response"
+	"easygoadmin/app/controller"
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
-// 控制器管理对象
-var Generate = new(generateCtl)
+func init() {
+	fmt.Println("模块路由初始化")
 
-type generateCtl struct{}
+	// 初始化
+	router := gin.Default()
 
-func (c *generateCtl) Index(ctx *gin.Context) {
-	// 渲染模板
-	response.BuildTpl(ctx, "generate_index.html").WriteTpl()
-}
+	/* 演示二 */
+	example2 := router.Group("example2")
+	{
+		example2.GET("/index", controller.Example2.Index)
+		example2.POST("/list", controller.Example2.List)
+		example2.GET("/edit", controller.Example2.Edit)
+		example2.POST("/add", controller.Example2.Add)
+		example2.POST("/update", controller.Example2.Update)
+		example2.POST("/delete/:ids", controller.Example2.Delete)
 
-func (c *generateCtl) List(ctx *gin.Context) {
-	// 参数验证
-	var req *dto.GeneratePageReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusOK, common.JsonResult{
-			Code: -1,
-			Msg:  err.Error(),
-		})
-		return
+		example2.POST("/setStatus", controller.Example2.Status)
 	}
-
-	// 调用查询列表方法
-	list, err := service.Generate.GetList(req)
-	if err != nil {
-		ctx.JSON(http.StatusOK, common.JsonResult{
-			Code: -1,
-			Msg:  err.Error(),
-		})
-		return
-	}
-
-	// 返回结果
-	ctx.JSON(http.StatusOK, common.JsonResult{
-		Code:  0,
-		Msg:   "查询成功",
-		Data:  list,
-		Count: gconv.Int64(len(list)),
-	})
-}
-
-func (c *generateCtl) Generate(ctx *gin.Context) {
-	// 调用生成方法
-	err := service.Generate.Generate(ctx)
-	if err != nil {
-		ctx.JSON(http.StatusOK, common.JsonResult{
-			Code: -1,
-			Msg:  err.Error(),
-		})
-		return
-	}
-
-	// 返回结果
-	ctx.JSON(http.StatusOK, common.JsonResult{
-		Code: 0,
-		Msg:  "模块生成成功",
-	})
 }

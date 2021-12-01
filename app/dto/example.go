@@ -19,55 +19,106 @@ package dto
 
 // 分页查询
 type ExamplePageReq struct {
-	Name string `form:"name"` // 测试名称
 
-	Status int `form:status` // 状态：1正常 2停用
+	
+	Name   string `form:"name"`   // 测试名称
+	
 
-	Type int `form:type` // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
+	Status   int    `form:"status"`   // 状态：1正常 2停用
+	
 
-	IsVip int `form:is_vip` // 是否VIP：1是 2否
+	
+	Type   int    `form:"type"`   // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
 
-	Page  int `form:"page"`  // 页码
-	Limit int `form:"limit"` // 每页数
+	
+	IsVip   int    `form:"isVip"`   // 是否VIP：1是 2否
+	
+
+	Page  int    `form:"page"`  // 页码
+	Limit int    `form:"limit"` // 每页数
 }
 
 // 添加演示一
 type ExampleAddReq struct {
-	Name string `form:"name"        binding:"required"` // 测试名称
 
-	Avatar string `form:"avatar"      binding:"required"` // 头像
+	
+	Name  string `form:"name"        binding:"required"`   // 测试名称
+	
 
-	Content string `form:"content"        binding:"required"` // 内容
+	
+	Avatar  string `form:"avatar"      binding:"required"`    // 头像
+	
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	
+	Content  string `form:"content"        binding:"required"`   // 内容
+	
 
-	Type string `form:"type"        binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
+	Status  string    `form:"status"        binding:"required"`    // 状态：1正常 2停用
+	
 
-	IsVip string `form:"isVip"        binding:"required"` // 是否VIP：1是 2否
+	
+	Type  string    `form:"type"        binding:"required"`    // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	
+	IsVip  string    `form:"isVip"        binding:"required"`    // 是否VIP：1是 2否
+	
+
+	
+	Sort  string `form:"sort"        binding:"required"`   // 排序号
+	
 
 }
 
 // 编辑演示一
 type ExampleUpdateReq struct {
-	Id string `form:"id" binding:"required"`
+	Id     string    `form:"id" binding:"required"`
 
-	Name string `form:"name"        binding:"required"` // 测试名称
+	
+	Name  string `form:"name"        binding:"required"`   // 测试名称
+	
 
-	Avatar string `form:"avatar"      binding:"required"` // 头像
+	
+	Avatar  string `form:"avatar"      binding:"required"`    // 头像
+	
 
-	Content string `form:"content"        binding:"required"` // 内容
+	
+	Content  string `form:"content"        binding:"required"`   // 内容
+	
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	
+	Status  string    `form:"status"        binding:"required"`    // 状态：1正常 2停用
+	
 
-	Type string `form:"type"        binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
+	Type  string    `form:"type"        binding:"required"`    // 类型：1京东 2淘宝 3拼多多 4唯品会
+	
 
-	IsVip string `form:"isVip"        binding:"required"` // 是否VIP：1是 2否
+	
+	IsVip  string    `form:"isVip"        binding:"required"`    // 是否VIP：1是 2否
+	
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	
+	Sort  string `form:"sort"        binding:"required"`   // 排序号
+	
 
 }
+
+// 删除演示一
+type ExampleDeleteReq struct {
+	Ids string `form:"ids" binding:"required"`
+}
+
+
+
+
+
+
+
+
 
 // 设置状态
 type ExampleStatusReq struct {
@@ -75,8 +126,15 @@ type ExampleStatusReq struct {
 	Status string `form:"status"    		binding:"required"`
 }
 
+
+
+
+
 // 设置是否VIP
 type ExampleIsVipReq struct {
-	Id    string `form:"id" 				binding:"required"`
+	Id     string `form:"id" 				binding:"required"`
 	IsVip string `form:"isVip"    		binding:"required"`
 }
+
+
+

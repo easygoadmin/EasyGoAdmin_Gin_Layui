@@ -18,7 +18,7 @@
 /**
  * 演示一管理-服务类
  * @author 半城风雨
- * @since 2021-11-23
+ * @since 2021-12-01
  * @File : example
  */
 package service
@@ -43,13 +43,38 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 	// 初始化查询实例
 	query := utils.XormDb.Where("mark=1")
 	if req != nil {
-		// 职级名称查询
+	
+		// 测试名称
+         
 		if req.Name != "" {
 			query = query.Where("name like ?", "%"+req.Name+"%")
 		}
+        
+	
+		// 状态：1正常 2停用
+         
+		if req.Status > 0 {
+			query = query.Where("status = ?", req.Status)
+		}
+        
+	
+		// 类型：1京东 2淘宝 3拼多多 4唯品会
+         
+		if req.Type > 0 {
+			query = query.Where("type = ?", req.Type)
+		}
+        
+	
+		// 是否VIP：1是 2否
+         
+		if req.IsVip > 0 {
+			query = query.Where("is_vip = ?", req.IsVip)
+		}
+        
+	
 	}
 	// 排序
-	query = query.Asc("sort")
+	query = query.Asc("id")
 	// 分页设置
 	offset := (req.Page - 1) * req.Limit
 	query = query.Limit(req.Limit, offset)
@@ -62,12 +87,18 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 	for _, v := range list {
 		item := vo.ExampleInfoVo{}
 		item.Example = v
-
+		
+		
+		
 		// 头像
 		if v.Avatar != "" {
 			item.Avatar = utils.GetImageUrl(v.Avatar)
 		}
-
+		
+		
+		
+		
+		
 		result = append(result, item)
 	}
 
@@ -78,7 +109,7 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 func (s *exampleService) Add(req *dto.ExampleAddReq, userId int) (int64, error) {
 	// 实例化对象
 	var entity model.Example
-
+	
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -89,10 +120,18 @@ func (s *exampleService) Add(req *dto.ExampleAddReq, userId int) (int64, error) 
 		entity.Avatar = avatar
 	}
 	entity.Content = req.Content
+	
 	entity.Status = gconv.Int(req.Status)
+	
+	
 	entity.Type = gconv.Int(req.Type)
+	
+	
 	entity.IsVip = gconv.Int(req.IsVip)
+	
+	
 	entity.Sort = gconv.Int(req.Sort)
+	
 	entity.CreateUser = userId
 	entity.CreateTime = time.Now().Unix()
 	entity.Mark = 1
@@ -107,7 +146,7 @@ func (s *exampleService) Update(req *dto.ExampleUpdateReq, userId int) (int64, e
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
 	}
-
+	
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -118,10 +157,18 @@ func (s *exampleService) Update(req *dto.ExampleUpdateReq, userId int) (int64, e
 		entity.Avatar = avatar
 	}
 	entity.Content = req.Content
+	
 	entity.Status = gconv.Int(req.Status)
+	
+	
 	entity.Type = gconv.Int(req.Type)
+	
+	
 	entity.IsVip = gconv.Int(req.IsVip)
+	
+	
 	entity.Sort = gconv.Int(req.Sort)
+	
 	entity.UpdateUser = userId
 	entity.UpdateTime = time.Now().Unix()
 	// 更新记录
@@ -146,6 +193,14 @@ func (s *exampleService) Delete(ids string) (int64, error) {
 	}
 }
 
+
+
+
+
+
+
+
+
 func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example{Id: gconv.Int(req.Id)}
@@ -163,6 +218,10 @@ func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, e
 	return entity.Update()
 }
 
+
+
+
+
 func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example{Id: gconv.Int(req.Id)}
@@ -179,3 +238,7 @@ func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, err
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()
 }
+
+
+
+

@@ -18,7 +18,7 @@
 /**
  * 演示二管理-服务类
  * @author 半城风雨
- * @since 2021-11-23
+ * @since 2021-12-01
  * @File : example2
  */
 package service
@@ -43,13 +43,24 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 	// 初始化查询实例
 	query := utils.XormDb.Where("mark=1")
 	if req != nil {
-		// 职级名称查询
+	
+		// 演示名称
+         
 		if req.Name != "" {
 			query = query.Where("name like ?", "%"+req.Name+"%")
 		}
+        
+	
+		// 状态：1正常 2停用
+         
+		if req.Status > 0 {
+			query = query.Where("status = ?", req.Status)
+		}
+        
+	
 	}
 	// 排序
-	query = query.Asc("sort")
+	query = query.Asc("id")
 	// 分页设置
 	offset := (req.Page - 1) * req.Limit
 	query = query.Limit(req.Limit, offset)
@@ -62,7 +73,10 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 	for _, v := range list {
 		item := vo.Example2InfoVo{}
 		item.Example2 = v
-
+		
+		
+		
+		
 		result = append(result, item)
 	}
 
@@ -73,10 +87,14 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 func (s *example2Service) Add(req *dto.Example2AddReq, userId int) (int64, error) {
 	// 实例化对象
 	var entity model.Example2
-
+	
 	entity.Name = req.Name
+	
 	entity.Status = gconv.Int(req.Status)
+	
+	
 	entity.Sort = gconv.Int(req.Sort)
+	
 	entity.CreateUser = userId
 	entity.CreateTime = time.Now().Unix()
 	entity.Mark = 1
@@ -91,10 +109,14 @@ func (s *example2Service) Update(req *dto.Example2UpdateReq, userId int) (int64,
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
 	}
-
+	
 	entity.Name = req.Name
+	
 	entity.Status = gconv.Int(req.Status)
+	
+	
 	entity.Sort = gconv.Int(req.Sort)
+	
 	entity.UpdateUser = userId
 	entity.UpdateTime = time.Now().Unix()
 	// 更新记录
@@ -119,6 +141,10 @@ func (s *example2Service) Delete(ids string) (int64, error) {
 	}
 }
 
+
+
+
+
 func (s *example2Service) Status(req *dto.Example2StatusReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example2{Id: gconv.Int(req.Id)}
@@ -135,3 +161,7 @@ func (s *example2Service) Status(req *dto.Example2StatusReq, userId int) (int64,
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()
 }
+
+
+
+

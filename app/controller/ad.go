@@ -25,9 +25,12 @@ package controller
 
 import (
 	"easygoadmin/app/dto"
+	"easygoadmin/app/model"
 	"easygoadmin/app/service"
 	"easygoadmin/utils"
 	"easygoadmin/utils/common"
+	"easygoadmin/utils/gconv"
+	"easygoadmin/utils/response"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -35,6 +38,11 @@ import (
 var Ad = new(adCtl)
 
 type adCtl struct{}
+
+func (c *adCtl) Index(ctx *gin.Context) {
+	// 渲染模板
+	response.BuildTpl(ctx, "ad_index.html").WriteTpl()
+}
 
 func (c *adCtl) List(ctx *gin.Context) {
 	// 参数
@@ -64,6 +72,46 @@ func (c *adCtl) List(ctx *gin.Context) {
 		Data:  list,
 		Count: count,
 	})
+}
+
+func (c *adCtl) Edit(ctx *gin.Context) {
+	// 查询记录
+	id := gconv.Int(ctx.Query("id"))
+	if id > 0 {
+		info := &model.Ad{Id: id}
+		has, err := info.Get()
+		if !has || err != nil {
+			ctx.JSON(http.StatusOK, common.JsonResult{
+				Code: -1,
+				Msg:  err.Error(),
+			})
+			return
+		}
+
+		// 广告图片
+		if info.Cover != "" {
+			info.Cover = utils.GetImageUrl(info.Cover)
+		}
+
+		// 广告位列表
+		list := make([]model.AdSort, 0)
+		utils.XormDb.Where("mark=1").Find(&list)
+		adSortList := make(map[int]string, 0)
+		for _, v := range list {
+			adSortList[v.Id] = v.Description
+		}
+
+		// 渲染模板
+		response.BuildTpl(ctx, "ad_edit.html").WriteTpl(gin.H{
+			"info":       info,
+			"typeList":   common.AD_TYPE_LIST,
+			"adSortList": adSortList,
+		})
+	} else {
+		// 添加
+		// 渲染模板
+		response.BuildTpl(ctx, "ad_edit.html").WriteTpl()
+	}
 }
 
 func (c *adCtl) Add(ctx *gin.Context) {

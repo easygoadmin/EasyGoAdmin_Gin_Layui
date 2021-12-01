@@ -18,7 +18,7 @@
 /**
  * 演示一管理-控制器
  * @author 半城风雨
- * @since 2021-11-23
+ * @since 2021-12-01
  * @File : example
  */
 package controller
@@ -40,7 +40,7 @@ var Example = new(exampleCtl)
 type exampleCtl struct{}
 
 func (c *exampleCtl) Index(ctx *gin.Context) {
-	// 渲染模板
+	// 模板渲染
 	response.BuildTpl(ctx, "example_index.html").WriteTpl()
 }
 
@@ -75,7 +75,6 @@ func (c *exampleCtl) List(ctx *gin.Context) {
 }
 
 func (c *exampleCtl) Edit(ctx *gin.Context) {
-	// 记录ID
 	id := gconv.Int(ctx.Query("id"))
 	if id > 0 {
 		// 编辑
@@ -88,15 +87,31 @@ func (c *exampleCtl) Edit(ctx *gin.Context) {
 			})
 			return
 		}
-
+		
+		
+		
+		
+		
 		// 头像
 		if info.Avatar != "" {
 			info.Avatar = utils.GetImageUrl(info.Avatar)
 		}
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// 渲染模板
 		response.BuildTpl(ctx, "example_edit.html").WriteTpl(gin.H{
-			"info": info,
+			"info":    info,
 		})
 	} else {
 		// 添加
@@ -188,6 +203,14 @@ func (c *exampleCtl) Delete(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
+
+
+
+
 func (c *exampleCtl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleStatusReq
@@ -215,6 +238,10 @@ func (c *exampleCtl) Status(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
 func (c *exampleCtl) IsVip(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleIsVipReq
@@ -241,3 +268,7 @@ func (c *exampleCtl) IsVip(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
+
+
+
+

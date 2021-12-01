@@ -18,7 +18,7 @@
 /**
  * 演示二管理-控制器
  * @author 半城风雨
- * @since 2021-11-23
+ * @since 2021-12-01
  * @File : example2
  */
 package controller
@@ -40,7 +40,7 @@ var Example2 = new(example2Ctl)
 type example2Ctl struct{}
 
 func (c *example2Ctl) Index(ctx *gin.Context) {
-	// 渲染模板
+	// 模板渲染
 	response.BuildTpl(ctx, "example2_index.html").WriteTpl()
 }
 
@@ -75,7 +75,6 @@ func (c *example2Ctl) List(ctx *gin.Context) {
 }
 
 func (c *example2Ctl) Edit(ctx *gin.Context) {
-	// 记录ID
 	id := gconv.Int(ctx.Query("id"))
 	if id > 0 {
 		// 编辑
@@ -88,10 +87,18 @@ func (c *example2Ctl) Edit(ctx *gin.Context) {
 			})
 			return
 		}
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// 渲染模板
 		response.BuildTpl(ctx, "example2_edit.html").WriteTpl(gin.H{
-			"info": info,
+			"info":    info,
 		})
 	} else {
 		// 添加
@@ -183,6 +190,10 @@ func (c *example2Ctl) Delete(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
 func (c *example2Ctl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.Example2StatusReq
@@ -209,3 +220,7 @@ func (c *example2Ctl) Status(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
+
+
+
+

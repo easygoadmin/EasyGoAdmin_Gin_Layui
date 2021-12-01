@@ -96,24 +96,28 @@ func (s *adService) Add(req *dto.AdAddReq, userId int) (int64, error) {
 	// 实例化对象
 	var entity model.Ad
 	entity.Title = req.Title
-	entity.AdSortId = req.AdSortId
-	entity.Type = req.Type
+	entity.AdSortId = gconv.Int(req.AdSortId)
+	entity.Type = gconv.Int(req.Type)
 	entity.Description = req.Description
 	entity.Content = req.Content
 	entity.Url = req.Url
-	entity.Width = req.Width
-	entity.Height = req.Height
-	entity.StartTime = req.StartTime
-	entity.EndTime = req.EndTime
-	entity.Status = req.Status
-	entity.Sort = req.Sort
+	entity.Width = gconv.Int(req.Width)
+	entity.Height = gconv.Int(req.Height)
+	// 开始日期转换
+	startTime, _ := time.Parse("2006-01-02 15:04:05", req.StartTime)
+	entity.StartTime = startTime.Unix()
+	// 结束日期转换
+	endTime, _ := time.Parse("2006-01-02 15:04:05", req.EndTime)
+	entity.EndTime = endTime.Unix()
+	entity.Status = gconv.Int(req.Status)
+	entity.Sort = gconv.Int(req.Sort)
 	entity.Note = req.Note
 	entity.CreateUser = userId
 	entity.CreateTime = time.Now().Unix()
 	entity.Mark = 1
 
 	// 广告封面
-	if req.Type == 1 {
+	if entity.Type == 1 {
 		// 图片
 		cover, err := utils.SaveImage(req.Cover, "ad")
 		if err != nil {
@@ -133,7 +137,7 @@ func (s *adService) Update(req *dto.AdUpdateReq, userId int) (int64, error) {
 		return 0, errors.New("演示环境，暂无权限操作")
 	}
 	// 查询记录
-	entity := &model.Ad{Id: req.Id}
+	entity := &model.Ad{Id: gconv.Int(req.Id)}
 	has, err := entity.Get()
 	if err != nil || !has {
 		return 0, err
@@ -141,23 +145,27 @@ func (s *adService) Update(req *dto.AdUpdateReq, userId int) (int64, error) {
 
 	// 设置对象
 	entity.Title = req.Title
-	entity.AdSortId = req.AdSortId
-	entity.Type = req.Type
+	entity.AdSortId = gconv.Int(req.AdSortId)
+	entity.Type = gconv.Int(req.Type)
 	entity.Description = req.Description
 	entity.Content = req.Content
 	entity.Url = req.Url
-	entity.Width = req.Width
-	entity.Height = req.Height
-	entity.StartTime = req.StartTime
-	entity.EndTime = req.EndTime
-	entity.Status = req.Status
-	entity.Sort = req.Sort
+	entity.Width = gconv.Int(req.Width)
+	entity.Height = gconv.Int(req.Height)
+	// 开始日期转换
+	startTime, _ := time.Parse("2006-01-02 15:04:05", req.StartTime)
+	entity.StartTime = startTime.Unix()
+	// 结束日期转换
+	endTime, _ := time.Parse("2006-01-02 15:04:05", req.EndTime)
+	entity.EndTime = endTime.Unix()
+	entity.Status = gconv.Int(req.Status)
+	entity.Sort = gconv.Int(req.Sort)
 	entity.Note = req.Note
 	entity.UpdateUser = userId
 	entity.UpdateTime = time.Now().Unix()
 
 	// 广告封面
-	if req.Type == 1 {
+	if entity.Type == 1 {
 		// 图片
 		cover, err := utils.SaveImage(req.Cover, "ad")
 		if err != nil {
@@ -197,7 +205,7 @@ func (s *adService) Status(req *dto.AdStatusReq, userId int) (int64, error) {
 		return 0, errors.New("演示环境，暂无权限操作")
 	}
 	// 查询记录是否存在
-	info := &model.Ad{Id: req.Id}
+	info := &model.Ad{Id: gconv.Int(req.Id)}
 	has, err := info.Get()
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
@@ -206,7 +214,7 @@ func (s *adService) Status(req *dto.AdStatusReq, userId int) (int64, error) {
 	// 设置状态
 	entity := &model.Ad{}
 	entity.Id = info.Id
-	entity.Status = req.Status
+	entity.Status = gconv.Int(req.Status)
 	entity.UpdateUser = userId
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()

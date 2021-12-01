@@ -41,6 +41,13 @@ func init() {
 	router.Static("/resource", "./public/resource")
 	router.StaticFile("/favicon.ico", "./public/resource/images/favicon.ico")
 
+	/* 文件上传 */
+	upload := router.Group("upload")
+	{
+		// 上传图片
+		upload.POST("/uploadImage", controller.Upload.UploadImage)
+	}
+
 	/* 登录注册 */
 	index := router.Group("/")
 	{
@@ -248,6 +255,18 @@ func init() {
 		adsort.GET("/getAdSortList", controller.AdSort.GetAdSortList)
 	}
 
+	/* 广告管理 */
+	ad := router.Group("ad")
+	{
+		ad.GET("/index", controller.Ad.Index)
+		ad.POST("/list", controller.Ad.List)
+		ad.GET("/edit", controller.Ad.Edit)
+		ad.POST("/add", controller.Ad.Add)
+		ad.POST("/update", controller.Ad.Update)
+		ad.POST("/delete/:ids", controller.Ad.Delete)
+		ad.POST("/status", controller.Ad.Status)
+	}
+
 	/* 字典管理 */
 	dict := router.Group("dict")
 	{
@@ -293,6 +312,20 @@ func init() {
 		website.Any("/index", controller.Website.Index)
 	}
 
+	/* 统计分析 */
+	analysis := router.Group("analysis")
+	{
+		analysis.GET("/index", controller.Analysis.Index)
+	}
+
+	/* 代码生成器 */
+	generate := router.Group("generate")
+	{
+		generate.GET("/index", controller.Generate.Index)
+		generate.POST("/list", controller.Generate.List)
+		generate.POST("/generate", controller.Generate.Generate)
+	}
+
 	/* 演示一 */
 	example := router.Group("example")
 	{
@@ -302,8 +335,8 @@ func init() {
 		example.POST("/add", controller.Example.Add)
 		example.POST("/update", controller.Example.Update)
 		example.POST("/delete/:ids", controller.Example.Delete)
-		example.POST("/status", controller.Example.Status)
-		example.POST("/isVip", controller.Example.IsVip)
+		example.POST("/setStatus", controller.Example.Status)
+		example.POST("/setIsVip", controller.Example.IsVip)
 	}
 
 	/* 演示二 */
@@ -315,9 +348,8 @@ func init() {
 		example2.POST("/add", controller.Example2.Add)
 		example2.POST("/update", controller.Example2.Update)
 		example2.POST("/delete/:ids", controller.Example2.Delete)
-		example2.POST("/status", controller.Example2.Status)
+		example2.POST("/setStatus", controller.Example2.Status)
 	}
-
 	// 启动
 	router.Run(":9199")
 }
@@ -353,6 +385,9 @@ func LoadTemplates(templatesDir string) multitemplate.Renderer {
 		},
 		"date2": func() string {
 			return time.Now().Format("2006-01-02 15:04:05.00000")
+		},
+		"safe": func(str string) template.HTML {
+			return template.HTML(str)
 		},
 		"widget":       widget.Widget,
 		"query":        widget.Query,

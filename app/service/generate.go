@@ -134,6 +134,11 @@ func (s *generateService) Generate(ctx *gin.Context) error {
 		return err
 	}
 
+	// 生成模块JS
+	if err := GenerateJs(columnList, authorName, moduleName, moduleTitle); err != nil {
+		return err
+	}
+
 	// 生成菜单权限
 	if err := GeneratePermission(moduleName, moduleTitle, utils.Uid(ctx)); err != nil {
 		return err
@@ -406,8 +411,6 @@ func GenerateService(dataList *common.ArrayList, authorName string, moduleName s
 func GenerateIndex(dataList *common.ArrayList, moduleName string, moduleTitle string) error {
 	// 初始化查询条件
 	queryList := make([]map[string]interface{}, 0)
-	// 初始化表单数组
-	columnList := make([]map[string]interface{}, 0)
 	for i := 0; i < dataList.Size(); i++ {
 		// 当前元素
 		data := dataList.Get(i)
@@ -419,32 +422,26 @@ func GenerateIndex(dataList *common.ArrayList, moduleName string, moduleTitle st
 			// 加入查询条件数组
 			queryList = append(queryList, item)
 		}
+		// 字段列表格式化，如isVip
+		columnName3 := gconv.String(item["columnName3"])
 		// 判断是否有columnValue键值
 		if _, ok := item["columnValue"]; ok && item["columnValue"] != "" {
 			// 加入查询条件数组
+			item["columnWidget"] = `{{select "` + gconv.String(columnName3) + `|0|` + gconv.String(item["columnTitle"]) + `|name|id" "` + gconv.String(item["columnValue"]) + `" 0}}`
 			queryList = append(queryList, item)
-
-			// 下拉单选组件
-			item["columnWidget"] = `{{ ['` + gconv.String(item["columnSelectValue"]) + `'][record.` + gconv.String(columnName) + ` - 1] }}`
 		}
-		// 移除部分非表单字段
-		if columnName == "id" ||
-			columnName == "create_user" ||
-			columnName == "update_user" ||
-			columnName == "mark" {
-			continue
-		}
-		// 加入数组
-		columnList = append(columnList, item)
 	}
 
 	// 加载自定义模板绑定数据并写入文件
 	if tmp, err := LoadTemplate("index.html", gin.H{
-		"moduleName":  moduleName,
-		"entityName":  gstr.UcWords(moduleName),
-		"moduleTitle": moduleTitle,
-		"columnList":  columnList,
-		"queryList":   queryList,
+		"queryList": queryList,
+		"funcList1": `{{query "查询"}}
+                {{add "添加` + moduleTitle + `" "{}"}}
+                {{dall "批量删除"}}`,
+		"funcList2": `{{edit "编辑"}}
+    {{delete "删除"}}`,
+		"defineStart": "{{define \"content\"}}",
+		"defineEnd":   "{{end}}",
 	}, true); err == nil {
 		// 获取项目根目录
 		curDir, err := os.Getwd()
@@ -452,7 +449,7 @@ func GenerateIndex(dataList *common.ArrayList, moduleName string, moduleTitle st
 			return err
 		}
 		// 文件路径
-		fileName := strings.Join([]string{curDir, "/avui/src/views/tool/example/", moduleName, "/index.vue"}, "")
+		fileName := strings.Join([]string{curDir, "/views/includes/", moduleName, "/" + moduleName + "_index.html"}, "")
 		// 删除现有文件
 		if err := gfile.Remove(fileName); err != nil {
 			return err
@@ -484,8 +481,16 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 		data := dataList.Get(i)
 		// 类型转换
 		item := data.(map[string]interface{})
+		// 字段类型
+		dataType := gconv.String(item["dataType"])
 		// 字段列名
 		columnName := gconv.String(item["columnName"])
+		// 字段列表格式化,如IsVip
+		columnName2 := gconv.String(item["columnName2"])
+		// 字段列表格式化，如isVip
+		columnName3 := gconv.String(item["columnName3"])
+		// 字段标题
+		columnTitle := gconv.String(item["columnTitle"])
 		// 移除部分非表单字段
 		if columnName == "id" ||
 			columnName == "create_user" ||
@@ -496,16 +501,39 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 			continue
 		}
 		// 图片上传
-		if _, isImage := item["columnImage"]; isImage {
+		if _, ok := item["columnImage"]; ok && item["columnImage"] == true {
+			item["columnWidget"] = `{{upload_image "` + columnName3 + `|` + columnTitle + `|90x90|建议上传尺寸450x450" .info.` + columnName2 + ` "" 0}}`
 			// 加入数组
 			imageList = append(imageList, item)
 			continue
 		}
 
 		// 多行文本输入
-		if _, isText := item["columnText"]; isText {
+		if _, ok := item["columnText"]; ok && item["columnText"] == true {
+			if dataType == "text" {
+				item["columnWidget"] = `{{kindeditor "` + columnName3 + `" "default" "80%" 350}}`
+			}
 			// 加入数组
 			rowsList = append(rowsList, item)
+			continue
+		}
+		// 判断是否有columnValue键值
+		if _, ok := item["columnValue"]; ok && item["columnValue"] != "" {
+			if _, isOk := item["columnSwitch"]; isOk && item["columnSwitch"] == true {
+				// 开关组件
+				item["columnWidget"] = `{{switch "` + columnName3 + `" "` + gconv.String(item["columnSwitchValue"]) + `" .info.` + columnName2 + `}}`
+			} else {
+				// 下拉单选组件
+				item["columnWidget"] = `{{select "` + columnName3 + `|0|` + columnTitle + `|name|id" "` + gconv.String(item["columnValue"]) + `" .info.` + columnName2 + `}}`
+			}
+			// 加入数组
+			formList = append(formList, item)
+			continue
+		}
+		// 日期组件
+		if dataType == "date" || dataType == "datetime" {
+			item["columnWidget"] = `{{date "` + columnName + `|1|` + columnTitle + `|` + dataType + `" .info.` + columnName2 + `}}`
+			formList = append(formList, item)
 			continue
 		}
 		// 加入数组
@@ -516,7 +544,7 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 	columnList := make([]map[string]interface{}, 0)
 
 	// 根据控制的个数实行分列显示(一行两列)
-	if len(formList)+len(imageList)+len(rowsList) > 50 {
+	if len(formList)+len(imageList)+len(rowsList) > 10 {
 		// 一行两列排列
 	} else {
 		// 单行排列
@@ -539,6 +567,65 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 
 	// 加载自定义模板绑定数据并写入文件
 	if tmp, err := LoadTemplate("edit.html", gin.H{
+		"columnList":   columnList,
+		"submitWidget": `{{submit "submit|立即保存,close|关闭" 1 ""}}`,
+		"defineStart":  "{{define \"form\"}}",
+		"defineEnd":    "{{end}}",
+	}, true); err == nil {
+		// 获取项目根目录
+		curDir, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+		// 文件路径
+		fileName := strings.Join([]string{curDir, "/views/includes/", moduleName, "/" + moduleName + "_edit.html"}, "")
+		// 删除现有文件
+		if err := gfile.Remove(fileName); err != nil {
+			return err
+		}
+		// 写入文件
+		if !gfile.Exists(fileName) {
+			f, err := gfile.Create(fileName)
+			if err == nil {
+				// 写入文件
+				f.WriteString(tmp)
+			}
+			// 关闭
+			f.Close()
+		}
+	}
+	return nil
+}
+
+// 生成模块JS文件
+func GenerateJs(dataList *common.ArrayList, authorName string, moduleName string, moduleTitle string) error {
+	// 初始化表单数组
+	columnList := make([]map[string]interface{}, 0)
+	for i := 0; i < dataList.Size(); i++ {
+		// 当前元素
+		data := dataList.Get(i)
+		// 类型转换
+		item := data.(map[string]interface{})
+		// 字段列名
+		columnName := gconv.String(item["columnName"])
+		// 移除部分非表单字段
+		if columnName == "id" ||
+			columnName == "create_user" ||
+			columnName == "create_time" ||
+			columnName == "update_user" ||
+			columnName == "update_time" ||
+			columnName == "mark" {
+			continue
+		}
+		// 加入数组
+		columnList = append(columnList, item)
+	}
+
+	// 读取HTML模板并绑定数据
+	// 加载自定义模板绑定数据并写入文件
+	if tmp, err := LoadTemplate("js.html", gin.H{
+		"author":      authorName,
+		"since":       time.Now().Format("2006-01-02"),
 		"moduleName":  moduleName,
 		"entityName":  gstr.UcWords(moduleName),
 		"moduleTitle": moduleTitle,
@@ -550,7 +637,7 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 			return err
 		}
 		// 文件路径
-		fileName := strings.Join([]string{curDir, "/avui/src/views/tool/example/", moduleName, "/" + moduleName + "-edit.vue"}, "")
+		fileName := strings.Join([]string{curDir, "/public/resource/module/easygoadmin_", moduleName, ".js"}, "")
 		// 删除现有文件
 		if err := gfile.Remove(fileName); err != nil {
 			return err
@@ -572,7 +659,7 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 // 生成菜单和权限
 func GeneratePermission(modelName string, modelTitle string, userId int) error {
 	// 查询记录
-	info := &model.Menu{Permission: "sys:" + modelName + ":view"}
+	info := &model.Menu{Permission: "sys:" + modelName + ":index"}
 	has, err := info.Get()
 	if err != nil || !has {
 		return err
@@ -580,7 +667,6 @@ func GeneratePermission(modelName string, modelTitle string, userId int) error {
 	// 创建菜单
 	var entity model.Menu
 	entity.Name = modelTitle
-	entity.Icon = "AntDesignOutlined"
 	entity.Icon = "layui-icon-component"
 	entity.Url = "/" + modelName + "/index"
 	entity.Pid = 225
@@ -795,7 +881,7 @@ func GetColumnList(tableName string) (*common.ArrayList, error) {
 		} else if dataType == "bigint" {
 			item["columnType"] = "int64"
 		} else if dataType == "datetime" {
-			item["columnType"] = "time.Time"
+			item["columnType"] = "int"
 		} else {
 			// 字符串类型
 			item["columnType"] = "string"
@@ -908,7 +994,20 @@ func LoadTemplate(templateName string, data interface{}, isReplace bool) (string
 		return "", err
 	}
 	// 创建一个模板
-	tmpl, err := template.New(templateName).Parse(string(b))
+	//tmpl := template.New(templateName)
+	//tmpl = tmpl.Funcs(template.FuncMap{
+	//	"safe": func(str string) template.HTML {
+	//		return template.HTML(str)
+	//	},
+	//})
+	//tmpl, err = tmpl.Parse(string(b))
+	tmpl, err := template.New(templateName).Funcs(
+		template.FuncMap{
+			"safe": func(str string) template.HTML {
+				return template.HTML(str)
+			},
+		},
+	).Parse(string(b))
 	if err != nil {
 		return "", nil
 	}
@@ -920,8 +1019,8 @@ func LoadTemplate(templateName string, data interface{}, isReplace bool) (string
 	}
 	if isReplace {
 		// 替换script标签
-		result := strings.Replace(buffer.String(), "scriptTmp", "script", -1)
-		result = strings.Replace(result, "&lt;", "<", -1)
+		result := strings.Replace(buffer.String(), "checkedStart", "'+(d.", -1)
+		result = strings.Replace(result, "checkedEnd", "==1 ? 'checked' : '')+'", -1)
 		return result, nil
 	} else {
 		return buffer.String(), nil

@@ -30,8 +30,8 @@ layui.use(['func', 'admin', 'zTree'], function () {
                 return  '<input type="checkbox" name="status" value="' + d.id + '" lay-skin="switch" lay-text="正常|禁用" lay-filter="status" '+(d.status==1 ? 'checked' : '')+'>';
             }}
             , {field: 'sort', width: 100, title: '排序', align: 'center'}
-            , {field: 'create_time', width: 180, title: '添加时间', align: 'center'}
-            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.update_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {fixed: 'right', width: 250, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

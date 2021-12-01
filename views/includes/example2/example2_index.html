@@ -1,16 +1,16 @@
 {{define "content"}}
-<!-- 功能操作区一 -->
+
 <form class="layui-form toolbar">
     <div class="layui-form-item">
         
-         <!-- 演示名称 -->
+         
         <div class="layui-inline">
             <label class="layui-form-label w-auto">演示名称：</label>
             <div class="layui-input-inline">
                 <input type="text" name="name" placeholder="请输入演示名称" autocomplete="off" class="layui-input">
             </div>
         </div>  
-         <!-- 状态：1正常 2停用 -->
+         
         <div class="layui-inline">
             <label class="layui-form-label w-auto">状态：</label>
             <div class="layui-input-inline">
@@ -27,12 +27,13 @@
     </div>
 </form>
 
-<!-- TABLE渲染区 -->
+
 <table class="layui-hide" id="tableList" lay-filter="tableList"></table>
 
-<!-- 操作功能区二 -->
+
 <script type="text/html" id="toolBar">
     {{edit "编辑"}}
     {{delete "删除"}}
 </script>
+
 {{end}}

@@ -36,8 +36,8 @@ layui.use(['func'], function () {
                     return '未备份';
                 }
             }
-            , {field: 'createTime', width: 180, title: '创建时间', align: 'center', sort: true}
-            , {field: 'updateTime', width: 180, title: '更新时间', align: 'center', sort: true}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.update_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {fixed: 'right', width: 100, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

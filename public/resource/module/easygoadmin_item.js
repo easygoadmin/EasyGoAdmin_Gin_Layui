@@ -51,8 +51,8 @@ layui.use(['func'], function () {
                 }}
             , {field: 'note', width: 100, title: '站点备注', align: 'center'}
             , {field: 'sort', width: 100, title: '显示顺序', align: 'center'}
-            , {field: 'create_time', width: 180, title: '添加时间', align: 'center'}
-            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.update_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {fixed: 'right', width: 150, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 
