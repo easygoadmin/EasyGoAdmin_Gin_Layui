@@ -1,6 +1,23 @@
+// +----------------------------------------------------------------------
+// | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2021 EasyGoAdmin深圳研发中心
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: 半城风雨 <easygoadmin@163.com>
+// +----------------------------------------------------------------------
+// | 免责声明:
+// | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
+// | 反我国法律法规的一切平台研发，任何单位和个人使用本软件框架用于产品研发而产生的任何意外
+// | 、疏忽、合约毁坏、诽谤、版权或知识产权侵犯及其造成的损失 (包括但不限于直接、间接、附带
+// | 或衍生的损失等)，本团队不承担任何法律责任。本软件框架只能用于公司和个人内部的法律所允
+// | 许的合法合规的软件产品研发，详细声明内容请阅读《框架免责声明》附件；
+// +----------------------------------------------------------------------
+
 /**
- *
- * @author 摆渡人
+ * 全局路由
+ * @author 半城风雨
  * @since 2021/8/20
  * @File : router
  */
@@ -69,7 +86,7 @@ func init() {
 		user.GET("/edit", controller.User.Edit)
 		user.POST("/add", controller.User.Add)
 		user.POST("/update", controller.User.Update)
-		user.POST("/delete", controller.User.Delete)
+		user.POST("/delete/:ids", controller.User.Delete)
 		user.POST("/setStatus", controller.User.Status)
 		user.POST("/resetPwd", controller.User.ResetPwd)
 		user.GET("/checkUser", controller.User.CheckUser)
@@ -83,7 +100,7 @@ func init() {
 		level.GET("/edit", controller.Level.Edit)
 		level.POST("/add", controller.Level.Add)
 		level.POST("/update", controller.Level.Update)
-		level.POST("/delete", controller.Level.Delete)
+		level.POST("/delete/:ids", controller.Level.Delete)
 		level.POST("/setStatus", controller.Level.Status)
 	}
 
@@ -95,7 +112,7 @@ func init() {
 		position.GET("/edit", controller.Position.Edit)
 		position.POST("/add", controller.Position.Add)
 		position.POST("/update", controller.Position.Update)
-		position.POST("/delete", controller.Position.Delete)
+		position.POST("/delete/:ids", controller.Position.Delete)
 		position.POST("/setStatus", controller.Position.Status)
 		position.GET("/getPositionList", controller.Position.GetPositionList)
 	}
@@ -108,7 +125,7 @@ func init() {
 		role.GET("/edit", controller.Role.Edit)
 		role.POST("/add", controller.Role.Add)
 		role.POST("/update", controller.Role.Update)
-		role.POST("/delete", controller.Role.Delete)
+		role.POST("/delete/:ids", controller.Role.Delete)
 		role.POST("/setStatus", controller.Role.Status)
 		role.GET("/getRoleList", controller.Role.GetRoleList)
 	}
@@ -128,7 +145,7 @@ func init() {
 		dept.GET("/edit", controller.Dept.Edit)
 		dept.POST("/add", controller.Dept.Add)
 		dept.POST("/update", controller.Dept.Update)
-		dept.POST("/delete", controller.Dept.Delete)
+		dept.POST("/delete/:ids", controller.Dept.Delete)
 		dept.GET("/getDeptList", controller.Dept.GetDeptList)
 	}
 
@@ -264,7 +281,7 @@ func init() {
 		ad.POST("/add", controller.Ad.Add)
 		ad.POST("/update", controller.Ad.Update)
 		ad.POST("/delete/:ids", controller.Ad.Delete)
-		ad.POST("/status", controller.Ad.Status)
+		ad.POST("/setStatus", controller.Ad.Status)
 	}
 
 	/* 字典管理 */
@@ -303,7 +320,7 @@ func init() {
 		configdata.POST("/add", controller.ConfigData.Add)
 		configdata.POST("/update", controller.ConfigData.Update)
 		configdata.POST("/delete/:ids", controller.ConfigData.Delete)
-		configdata.POST("/status", controller.ConfigData.Status)
+		configdata.POST("/setStatus", controller.ConfigData.Status)
 	}
 
 	/* 网站设置 */

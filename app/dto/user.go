@@ -50,7 +50,7 @@ type UserAddReq struct {
 	Username     string `form:"username" binding:"required"`
 	Password     string `form:"password"`
 	Intro        string `form:"intro"`
-	Status       string `form:"status" binding:"required"`
+	Status       string `form:"status"`
 	Note         string `form:"note"`
 	Sort         string `form:"sort"`
 	RoleIds      string `form:"roleIds"` // 用户角色
@@ -76,7 +76,7 @@ type UserUpdateReq struct {
 	Username     string `form:"username" binding:"required"`
 	Password     string `form:"password"`
 	Intro        string `form:"intro"`
-	Status       string `form:"status" binding:"required"`
+	Status       string `form:"status"`
 	Note         string `form:"note"`
 	Sort         string `form:"sort"`
 	RoleIds      string `form:"roleIds"` // 用户角色

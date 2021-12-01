@@ -145,11 +145,14 @@ func (s *userService) Add(req *dto.UserAddReq, userId int) (int64, error) {
 	entity.Mobile = req.Mobile
 	entity.Email = req.Email
 	// 日期处理
-	tm2, _ := time.Parse("01/02/2006", req.Birthday)
+	tm2, _ := time.Parse("2006-01-02", req.Birthday)
 	entity.Birthday = tm2.Unix()
 	entity.DeptId = gconv.Int(req.DeptId)
 	entity.LevelId = gconv.Int(req.LevelId)
 	entity.PositionId = gconv.Int(req.PositionId)
+	entity.ProvinceCode = req.ProvinceCode
+	entity.CityCode = req.CityCode
+	entity.DistrictCode = req.DistrictCode
 	entity.Address = req.Address
 	entity.Username = req.Username
 	entity.Intro = req.Intro
@@ -194,11 +197,14 @@ func (s *userService) Update(req *dto.UserUpdateReq, userId int) (int64, error) 
 	entity.Mobile = req.Mobile
 	entity.Email = req.Email
 	// 日期处理
-	tm2, _ := time.Parse("01/02/2006", req.Birthday)
+	tm2, _ := time.Parse("2006-01-02", req.Birthday)
 	entity.Birthday = tm2.Unix()
 	entity.DeptId = gconv.Int(req.DeptId)
 	entity.LevelId = gconv.Int(req.LevelId)
 	entity.PositionId = gconv.Int(req.PositionId)
+	entity.ProvinceCode = req.ProvinceCode
+	entity.CityCode = req.CityCode
+	entity.DistrictCode = req.DistrictCode
 	entity.Address = req.Address
 	entity.Username = req.Username
 	entity.Intro = req.Intro

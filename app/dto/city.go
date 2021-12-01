@@ -58,5 +58,5 @@ type CityUpdateReq struct {
 
 // 获取子级城市
 type CityChildReq struct {
-	CityCode string `form:"id" binding:"required"`
+	CityCode string `form:"citycode" binding:"required"`
 }

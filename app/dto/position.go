@@ -45,11 +45,6 @@ type PositionUpdateReq struct {
 	Sort   string `form:"sort"`
 }
 
-// 删除岗位
-type PositionDeleteReq struct {
-	Ids string `form:"ids"  binding:"required"`
-}
-
 // 设置状态
 type PositionStatusReq struct {
 	Id     string `form:"id" binding:"required"`

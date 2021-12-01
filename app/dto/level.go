@@ -45,11 +45,6 @@ type LevelUpdateReq struct {
 	Sort   string `form:"sort"`
 }
 
-// 删除职级
-type LevelDeleteReq struct {
-	Ids string `form:"ids"  binding:"required"`
-}
-
 // 设置状态
 type LevelStatusReq struct {
 	Id     string `form:"id" binding:"required"`

@@ -154,17 +154,17 @@ func (c *positionCtl) Update(ctx *gin.Context) {
 }
 
 func (c *positionCtl) Delete(ctx *gin.Context) {
-	var req *dto.PositionDeleteReq
-	// 请求验证
-	if err := ctx.ShouldBind(&req); err != nil {
+	// 记录ID
+	ids := ctx.Param("ids")
+	if ids == "" {
 		ctx.JSON(http.StatusOK, common.JsonResult{
 			Code: -1,
-			Msg:  err.Error(),
+			Msg:  "记录ID不能为空",
 		})
 		return
 	}
 	// 调用删除方法
-	rows, err := service.Position.Delete(req.Ids)
+	rows, err := service.Position.Delete(ids)
 	if err != nil || rows == 0 {
 		ctx.JSON(http.StatusOK, common.JsonResult{
 			Code: -1,
