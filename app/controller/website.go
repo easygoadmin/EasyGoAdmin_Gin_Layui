@@ -45,6 +45,12 @@ type website struct{}
 
 func (c *website) Index(ctx *gin.Context) {
 	if ctx.Request.Method == "POST" {
+		// 返回结果
+		ctx.JSON(http.StatusOK, common.JsonResult{
+			Code: -1,
+			Msg:  "演示环境，暂无权限操作",
+		})
+		return
 		// key：string类型，value：interface{}  类型能存任何数据类型
 		var jsonObj map[string]interface{}
 		data, _ := ctx.GetRawData()

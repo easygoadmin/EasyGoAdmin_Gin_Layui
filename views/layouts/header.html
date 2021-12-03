@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{{.siteName}}</title>
     <link href="/resource/assets/images/favicon.ico" rel="icon">
-    <link rel="stylesheet" href="/resource/assets/libs/layui/css/layui.css"/>
-    <link rel="stylesheet" href="/resource/assets/module/admin.css?v={$Think.env.app_debug?time():'2.0.7'}"/>
+    <link type="text/css" rel="stylesheet" href="/resource/assets/libs/layui/css/layui.css"/>
+    <link type="text/css" rel="stylesheet" href="/resource/assets/module/admin.css?v=318"/>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="/resource/assets/libs/layui/layui.js"></script>
     <script type="text/javascript" src="/resource/assets/js/common.js?v=318"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7151c4ffa8fc52c6755ab40bc8b709d4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     <script type="text/javascript">
         var url = window.location.pathname.substring(1);
         var item = url.split("/");

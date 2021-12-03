@@ -42,21 +42,16 @@ var Index = new(indexCtl)
 type indexCtl struct{}
 
 func (c *indexCtl) Index(ctx *gin.Context) {
-	if utils.IsLogin(ctx) {
-		// 已登录
-		// 获取用户信息
-		userInfo := service.Login.GetProfile(ctx)
-		// 获取菜单列表
-		menuList := service.Menu.GetPermissionMenuList(userInfo.Id)
-		// 渲染模板并绑定数据
-		response.BuildTpl(ctx, "index.html").WriteTpl(gin.H{
-			"userInfo": userInfo,
-			"menuList": menuList,
-		})
-	} else {
-		// 未登录
-		ctx.Redirect(http.StatusMovedPermanently, "/login")
-	}
+	// 已登录
+	// 获取用户信息
+	userInfo := service.Login.GetProfile(ctx)
+	// 获取菜单列表
+	menuList := service.Menu.GetPermissionMenuList(userInfo.Id)
+	// 渲染模板并绑定数据
+	response.BuildTpl(ctx, "index.html").WriteTpl(gin.H{
+		"userInfo": userInfo,
+		"menuList": menuList,
+	})
 }
 
 func (c *indexCtl) Main(ctx *gin.Context) {
@@ -151,33 +146,33 @@ func (c *indexCtl) User(ctx *gin.Context) {
 	})
 }
 
-// 个人中心
-func (c *indexCtl) UpdateUserInfo(ctx *gin.Context) {
-	// 参数验证
-	var req *dto.UserInfoReq
-	if err := ctx.ShouldBind(&req); err != nil {
-		ctx.JSON(http.StatusOK, common.JsonResult{
-			Code: -1,
-			Msg:  err.Error(),
-		})
-		return
-	}
-	// 更新信息
-	_, err := service.User.UpdateUserInfo(req, utils.Uid(ctx))
-	if err != nil {
-		ctx.JSON(http.StatusOK, common.JsonResult{
-			Code: -1,
-			Msg:  err.Error(),
-		})
-		return
-	}
-
-	// 返回结果
-	ctx.JSON(http.StatusOK, common.JsonResult{
-		Code: 0,
-		Msg:  "更新成功",
-	})
-}
+//// 个人中心
+//func (c *indexCtl) UpdateUserInfo(ctx *gin.Context) {
+//	// 参数验证
+//	var req *dto.UserInfoReq
+//	if err := ctx.ShouldBind(&req); err != nil {
+//		ctx.JSON(http.StatusOK, common.JsonResult{
+//			Code: -1,
+//			Msg:  err.Error(),
+//		})
+//		return
+//	}
+//	// 更新信息
+//	_, err := service.User.UpdateUserInfo(req, utils.Uid(ctx))
+//	if err != nil {
+//		ctx.JSON(http.StatusOK, common.JsonResult{
+//			Code: -1,
+//			Msg:  err.Error(),
+//		})
+//		return
+//	}
+//
+//	// 返回结果
+//	ctx.JSON(http.StatusOK, common.JsonResult{
+//		Code: 0,
+//		Msg:  "更新成功",
+//	})
+//}
 
 // 更新密码
 func (c *indexCtl) UpdatePwd(ctx *gin.Context) {
@@ -212,15 +207,14 @@ func (c *indexCtl) UpdatePwd(ctx *gin.Context) {
 func (c *indexCtl) Logout(ctx *gin.Context) {
 	// 初始化session对象
 	session := sessions.Default(ctx)
+	//session.Set("userId", "")
+	//session.Save()
 	// 删除session数据
-	session.Delete("userId")
+	//session.Delete("userId")
 	// 清空session
 	session.Clear()
-	//// 保存session数据
-	//session.Save()
-	// 注销系统并返回提示
-	ctx.JSON(http.StatusOK, common.JsonResult{
-		Code: 0,
-		Msg:  "注销成功",
-	})
+	// 保存session数据
+	session.Save()
+	// 跳转登录页,方式：301(永久移动),308(永久重定向),307(临时重定向)
+	ctx.Redirect(http.StatusTemporaryRedirect, "/login")
 }

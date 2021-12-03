@@ -25,6 +25,7 @@ package router
 
 import (
 	"easygoadmin/app/controller"
+	"easygoadmin/app/middleware"
 	"easygoadmin/widget"
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
@@ -47,6 +48,8 @@ func init() {
 	// 设置session中间件，参数mysession，指的是session的名字，也是cookie的名字
 	// store是前面创建的存储引擎，我们可以替换成其他存储引擎
 	router.Use(sessions.Sessions("easygoadmin", store))
+	// 登录验证中间件
+	router.Use(middleware.CheckLogin())
 
 	// 设置模板文件目录
 	router.HTMLRender = LoadTemplates("views")
@@ -68,7 +71,7 @@ func init() {
 	/* 登录注册 */
 	index := router.Group("/")
 	{
-		index.GET("/", controller.Login.Login)
+		index.GET("/", controller.Index.Index)
 		index.Any("/login", controller.Login.Login)
 		index.GET("/captcha", controller.Login.Captcha)
 		index.GET("/index", controller.Index.Index)
@@ -77,6 +80,8 @@ func init() {
 		index.Any("/updatePwd", controller.Index.UpdatePwd)
 		index.GET("/logout", controller.Index.Logout)
 	}
+
+	//router.GET("/logout", controller.Index.Logout)
 
 	/* 用户管理 */
 	user := router.Group("user")

@@ -1,3 +1,4 @@
+{{define "content"}}
 <style>
     /* 用户信息 */
     .user-info-head {
@@ -99,7 +100,7 @@
             <div class="layui-card-body" style="padding: 25px;">
                 <div class="text-center layui-text">
                     <div class="user-info-head" id="adminInfoHead">
-                        <img src="{{if eq .userInfo.Avatar nil}}/resource/images/logo_mini.png{{else}}{{.userInfo.Avatar}}{{end}}" alt="用户头像"/>
+                        <img src="{{if .userInfo.Avatar}}{{.userInfo.Avatar}}{{else}}/resource/images/logo_mini.png{{end}}" alt="用户头像"/>
                     </div>
                     <h2 style="padding-top: 20px;">{{.userInfo.Username}}</h2>
                     <p style="padding-top: 8px;">{{.userInfo.Intro}}</p>
@@ -145,11 +146,24 @@
                         <form class="layui-form" id="userInfoSubmit" lay-filter="userInfoSubmit"
                               style="max-width: 400px;padding: 25px 10px 0 0;">
                             <div class="layui-form-item">
-                                <label class="layui-form-label layui-form-required">真实名称:</label>
+                                <label class="layui-form-label layui-form-required">用户姓名:</label>
                                 <div class="layui-input-block">
                                     <input name="realname" value="{{.userInfo.Realname}}" class="layui-input" lay-verify="required" required/>
                                 </div>
                             </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label layui-form-required">用户昵称:</label>
+                                <div class="layui-input-block">
+                                    <input name="nickname" value="{{.userInfo.Nickname}}" class="layui-input" lay-verify="required" required/>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label layui-form-required">性别:</label>
+                                <div class="layui-input-block">
+                                    {{select "gender|1|性别|name|id" "1=男,2=女,3=保密" .info.Gender}}
+                                </div>
+                            </div>
+
                             <div class="layui-form-item">
                                 <label class="layui-form-label layui-form-required">邮箱:</label>
                                 <div class="layui-input-block">
@@ -188,3 +202,4 @@
         </div>
     </div>
 </div>
+{{end}}

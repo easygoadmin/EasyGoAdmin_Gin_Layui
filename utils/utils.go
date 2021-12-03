@@ -47,16 +47,21 @@ func AppDebug() bool {
 
 // 登录用户ID
 func Uid(ctx *gin.Context) int {
-	return 1
+	// 初始化session对象
+	session := sessions.Default(ctx)
+	// 获取用户ID
+	userId := gconv.Int(session.Get("userId"))
+	// 返回用户ID
+	return userId
 }
 
 // 判断用户登录状态
 func IsLogin(ctx *gin.Context) bool {
 	// 初始化session对象
 	session := sessions.Default(ctx)
-	// 通过session.Get读取session值
-	// session是键值对格式数据，因此需要通过key查询数据
-	return session.Get("userId") != ""
+	// 获取用户ID
+	userId := session.Get("userId")
+	return userId != nil
 }
 
 // 获取数据库表

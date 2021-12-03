@@ -90,7 +90,7 @@ type UserStatusReq struct {
 
 // 重置密码
 type UserResetPwdReq struct {
-	Id string `form:"id" binding:"required"`
+	Id int `form:"id" binding:"required"`
 }
 
 // 检查用户

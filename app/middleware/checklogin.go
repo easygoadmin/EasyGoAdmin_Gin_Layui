@@ -23,10 +23,27 @@
  */
 package middleware
 
-import "github.com/gin-gonic/gin"
+import (
+	"easygoadmin/utils"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"strings"
+)
 
 func CheckLogin() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
+		fmt.Println("登录验证中间件")
+		// 放行设置
+		urlItem := []string{"/captcha", "/login"}
+		if !utils.InStringArray(c.Request.URL.Path, urlItem) && !strings.Contains(c.Request.URL.Path, "resource") {
+			if !utils.IsLogin(c) {
+				// 跳转登录页,方式：301(永久移动),308(永久重定向),307(临时重定向)
+				c.Redirect(http.StatusTemporaryRedirect, "/login")
+				return
+			}
+		}
+		// 前置中间件
+		c.Next()
 	}
 }

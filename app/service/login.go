@@ -42,8 +42,8 @@ type loginService struct{}
 func (s *loginService) UserLogin(username, password string, ctx *gin.Context) error {
 	// 查询用户
 	var user model.User
-	isOk, err := utils.XormDb.Where("username=? and mark=1", username).Get(&user)
-	if err != nil && isOk {
+	has, err := utils.XormDb.Where("username=? and mark=1", username).Get(&user)
+	if err != nil && !has {
 		return errors.New("用户名或者密码不正确")
 	}
 	// 密码校验
