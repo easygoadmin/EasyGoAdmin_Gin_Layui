@@ -33,8 +33,8 @@
 * 系统名称：EasyGoAdmin敏捷开发框架Gin+Layui版本
 * 作者：半城风雨
 * 作者QQ：[1260211623](http://wpa.qq.com/msgrd?v=3&amp;uin=1260211623&amp;site=qq&amp;menu=yes)
-* 官网网址：[http://www.easygoadmin.vip/](http://www.easygoadmin.vip/)
-* 文档网址：[http://docs.gin.layui.easygoadmin.vip/](http://docs.gin.layui.easygoadmin.vip/)
+* 官网网址：[http://www.easygoadmin.vip](http://www.easygoadmin.vip)
+* 文档网址：[http://docs.gin.layui.easygoadmin.vip](http://docs.gin.layui.easygoadmin.vip)
 
 ## 🎨 系统演示
 
