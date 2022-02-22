@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
 // | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
 // +----------------------------------------------------------------------
-// | 版权所有 2019~2021 EasyGoAdmin深圳研发中心
+// | 版权所有 2019~2022 EasyGoAdmin深圳研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
@@ -87,18 +87,10 @@ func (c *example2Ctl) Edit(ctx *gin.Context) {
 			})
 			return
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		// 渲染模板
 		response.BuildTpl(ctx, "example2_edit.html").WriteTpl(gin.H{
-			"info":    info,
+			"info": info,
 		})
 	} else {
 		// 添加
@@ -190,10 +182,6 @@ func (c *example2Ctl) Delete(ctx *gin.Context) {
 	})
 }
 
-
-
-
-
 func (c *example2Ctl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.Example2StatusReq
@@ -220,7 +208,3 @@ func (c *example2Ctl) Status(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
-
-
-
-
