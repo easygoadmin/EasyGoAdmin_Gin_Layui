@@ -20,9 +20,6 @@ main
 .vscode
 go.sum
 
-document/easygoadmin.gin.layui.sql
-widget/
-
 node_modules/
 src/
 dist/
