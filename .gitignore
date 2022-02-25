@@ -27,3 +27,4 @@ package.json
 package-lock.json
 webpack.config.js
 .svn
+app/service/generate.go
