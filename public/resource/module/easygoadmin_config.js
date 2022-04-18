@@ -112,9 +112,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func'], function () {
         }, function (i) {
             layer.close(i);
             var loadIndex = layer.load(2);
-            $.post('/config/delete', {
-                ids: obj.data.id,
-            }, function (res) {
+            $.post('/config/delete/'+ obj.data.id, {}, function (res) {
                 layer.close(loadIndex);
                 if (0 === res.code) {
                     layer.msg(res.msg, {icon: 1});
@@ -238,7 +236,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func'], function () {
             } else if (obj.ids) {
                 ids = obj.ids;
             }
-            $.post('/configdata/delete', {ids: ids.join(",")}, function (res) {
+            $.post('/configdata/delete/' +ids.join(",") , {}, function (res) {
                 layer.close(loadIndex);
                 if (0 === res.code) {
                     layer.msg(res.msg, {icon: 1});

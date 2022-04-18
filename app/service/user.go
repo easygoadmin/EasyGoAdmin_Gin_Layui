@@ -30,6 +30,7 @@ import (
 	"easygoadmin/utils"
 	"easygoadmin/utils/gconv"
 	"errors"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -177,8 +178,26 @@ func (s *userService) Add(req *dto.UserAddReq, userId int) (int64, error) {
 	entity.CreateUser = userId
 	entity.CreateTime = time.Now().Unix()
 	entity.Mark = 1
+
 	// 插入记录
-	return entity.Insert()
+	rows, err := entity.Insert()
+	if err != nil || rows == 0 {
+		return 0, err
+	}
+
+	// 删除用户角色关系
+	utils.XormDb.Where("user_id=?", entity.Id).Delete(&model.UserRole{})
+	// 创建人员角色关系
+	for _, v := range req.RoleIds {
+		if v <= 0 {
+			continue
+		}
+		var userRole model.UserRole
+		userRole.UserId = userId
+		userRole.RoleId = gconv.Int(v)
+		userRole.Insert()
+	}
+	return rows, nil
 }
 
 func (s *userService) Update(req *dto.UserUpdateReq, userId int) (int64, error) {
@@ -243,11 +262,10 @@ func (s *userService) Update(req *dto.UserUpdateReq, userId int) (int64, error) 
 			continue
 		}
 		var userRole model.UserRole
-		userRole.UserId = entity.Id
+		userRole.UserId = userId
 		userRole.RoleId = gconv.Int(v)
 		userRole.Insert()
 	}
-
 	return rows, nil
 }
 
@@ -267,7 +285,17 @@ func (s *userService) Delete(ids string) (int64, error) {
 		return rows, nil
 	} else {
 		// 批量删除
-		return 0, nil
+		count := 0
+		for _, v := range idsArr {
+			id, _ := strconv.Atoi(v)
+			entity := &model.User{Id: id}
+			rows, err := entity.Delete()
+			if rows == 0 || err != nil {
+				continue
+			}
+			count++
+		}
+		return int64(count), nil
 	}
 }
 

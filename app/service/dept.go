@@ -31,6 +31,7 @@ import (
 	"easygoadmin/utils/gconv"
 	"errors"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -128,7 +129,17 @@ func (s *deptService) Delete(ids string) (int64, error) {
 		return rows, nil
 	} else {
 		// 批量删除
-		return 0, nil
+		count := 0
+		for _, v := range idsArr {
+			id, _ := strconv.Atoi(v)
+			entity := &model.Dept{Id: id}
+			rows, err := entity.Delete()
+			if rows == 0 || err != nil {
+				continue
+			}
+			count++
+		}
+		return int64(count), nil
 	}
 }
 

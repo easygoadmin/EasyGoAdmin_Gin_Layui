@@ -7,10 +7,10 @@
 package main
 
 import (
+	widget2 "easygoadmin/app/widget"
 	_ "easygoadmin/boot"
 	cfg "easygoadmin/library/cfg"
 	_ "easygoadmin/router"
-	"easygoadmin/widget"
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
@@ -74,28 +74,28 @@ func LoadTemplates(templatesDir string) multitemplate.Renderer {
 		"date": func() string {
 			return time.Now().Format("2006-01-02 15:04:05.00000")
 		},
-		"widget":       widget.Widget,
-		"query":        widget.Query,
-		"add":          widget.Add,
-		"edit":         widget.Edit,
-		"delete":       widget.Delete,
-		"dall":         widget.Dall,
-		"expand":       widget.Expand,
-		"collapse":     widget.Collapse,
-		"addz":         widget.Addz,
-		"switch":       widget.Switch,
-		"select":       widget.Select,
-		"submit":       widget.Submit,
-		"icon":         widget.Icon,
-		"transfer":     widget.Transfer,
-		"upload_image": widget.UploadImage,
-		"album":        widget.Album,
-		"item":         widget.Item,
-		"kindeditor":   widget.Kindeditor,
+		"widget":       widget2.Widget,
+		"query":        widget2.Query,
+		"add":          widget2.Add,
+		"edit":         widget2.Edit,
+		"delete":       widget2.Delete,
+		"dall":         widget2.Dall,
+		"expand":       widget2.Expand,
+		"collapse":     widget2.Collapse,
+		"addz":         widget2.Addz,
+		"switch":       widget2.Switch,
+		"select":       widget2.Select,
+		"submit":       widget2.Submit,
+		"icon":         widget2.Icon,
+		"transfer":     widget2.Transfer,
+		"upload_image": widget2.UploadImage,
+		"album":        widget2.Album,
+		"item":         widget2.Item,
+		"kindeditor":   widget2.Kindeditor,
 		//"date":         widget.Date,
-		"checkbox": widget.Checkbox,
-		"radio":    widget.Radio,
-		"city":     widget.City,
+		"checkbox": widget2.Checkbox,
+		"radio":    widget2.Radio,
+		"city":     widget2.City,
 	}
 
 	// 将主模板，include页面，layout子模板组合成一个完整的html页面

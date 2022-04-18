@@ -84,11 +84,7 @@
             <ul class="layui-nav layui-nav-tree {{if gt $key 0}}layui-hide{{end}}" nav-id="xt{{$key}}" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
                 {{range $ko, $vo := $val.Children}}
                 <li  class="layui-nav-item">
-                    {{if $vo.Children}}
                     <a {{if eq $vo.Target 2}}href="{{$vo.Url}}" target="_blank" {{else}}lay-href="{{$vo.Url}}"{{end}}><i class="layui-icon {{$vo.Icon}}"></i>&emsp;<cite>{{$vo.Name}}</cite></a>
-                    {{else}}
-                    <a><i class="layui-icon {{$vo.Icon}}"></i>&emsp;<cite>{{$vo.Name}}</cite></a>
-                    {{end}}
                     {{if $vo.Children}}
                     <dl class="layui-nav-child">
                     {{range $k, $v := $vo.Children}}

@@ -26,7 +26,7 @@ package router
 import (
 	"easygoadmin/app/controller"
 	"easygoadmin/app/middleware"
-	"easygoadmin/widget"
+	widget2 "easygoadmin/app/widget"
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-contrib/sessions"
@@ -329,9 +329,9 @@ func init() {
 	}
 
 	/* 网站设置 */
-	website := router.Group("website")
+	configweb := router.Group("configweb")
 	{
-		website.Any("/index", controller.Website.Index)
+		configweb.Any("/index", controller.ConfigWeb.Index)
 	}
 
 	/* 统计分析 */
@@ -411,28 +411,28 @@ func LoadTemplates(templatesDir string) multitemplate.Renderer {
 		"safe": func(str string) template.HTML {
 			return template.HTML(str)
 		},
-		"widget":       widget.Widget,
-		"query":        widget.Query,
-		"add":          widget.Add,
-		"edit":         widget.Edit,
-		"delete":       widget.Delete,
-		"dall":         widget.Dall,
-		"expand":       widget.Expand,
-		"collapse":     widget.Collapse,
-		"addz":         widget.Addz,
-		"switch":       widget.Switch,
-		"select":       widget.Select,
-		"submit":       widget.Submit,
-		"icon":         widget.Icon,
-		"transfer":     widget.Transfer,
-		"upload_image": widget.UploadImage,
-		"album":        widget.Album,
-		"item":         widget.Item,
-		"kindeditor":   widget.Kindeditor,
-		"date":         widget.Date,
-		"checkbox":     widget.Checkbox,
-		"radio":        widget.Radio,
-		"city":         widget.City,
+		"widget":       widget2.Widget,
+		"query":        widget2.Query,
+		"add":          widget2.Add,
+		"edit":         widget2.Edit,
+		"delete":       widget2.Delete,
+		"dall":         widget2.Dall,
+		"expand":       widget2.Expand,
+		"collapse":     widget2.Collapse,
+		"addz":         widget2.Addz,
+		"switch":       widget2.Switch,
+		"select":       widget2.Select,
+		"submit":       widget2.Submit,
+		"icon":         widget2.Icon,
+		"transfer":     widget2.Transfer,
+		"upload_image": widget2.UploadImage,
+		"album":        widget2.Album,
+		"item":         widget2.Item,
+		"kindeditor":   widget2.Kindeditor,
+		"date":         widget2.Date,
+		"checkbox":     widget2.Checkbox,
+		"radio":        widget2.Radio,
+		"city":         widget2.City,
 	}
 
 	// 将主模板，include页面，layout子模板组合成一个完整的html页面
@@ -447,7 +447,7 @@ func LoadTemplates(templatesDir string) multitemplate.Renderer {
 			// 字典
 			dict, _ := filepath.Glob(templatesDir + "/includes/dict/*.html")
 			files = append(files, dict...)
-		} else if strings.Contains(baseName, "config") {
+		} else if baseName == "config" {
 			files = append(files, templatesDir+"/layouts/main.html", include)
 			// 字典
 			dict, _ := filepath.Glob(templatesDir + "/includes/config/*.html")

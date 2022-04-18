@@ -107,9 +107,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin'], function () {
         }, function (i) {
             layer.close(i);
             var loadIndex = layer.load(2);
-            $.post('/dict/delete', {
-                ids: obj.data.id,
-            }, function (res) {
+            $.post('/dict/delete/' + obj.data.id, {}, function (res) {
                 layer.close(loadIndex);
                 if (0 === res.code) {
                     layer.msg(res.msg, {icon: 1});
@@ -222,7 +220,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin'], function () {
             } else if (obj.ids) {
                 ids = obj.ids;
             }
-            $.post('/dictdata/delete', {ids: ids.join(",")}, function (res) {
+            $.post('/dictdata/delete/' + ids.join(","), {}, function (res) {
                 layer.close(loadIndex);
                 if (0 === res.code) {
                     layer.msg(res.msg, {icon: 1});
