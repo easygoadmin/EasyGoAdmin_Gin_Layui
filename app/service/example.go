@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
-// | Author: 半城风雨 <easygoadmin@163.com>
+// | Author: @半城风雨
 // +----------------------------------------------------------------------
 // | 免责声明:
 // | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
@@ -18,7 +18,7 @@
 /**
  * 演示一管理-服务类
  * @author 半城风雨
- * @since 2021-12-01
+ * @since 2022-04-19
  * @File : example
  */
 package service
@@ -30,7 +30,6 @@ import (
 	"easygoadmin/utils"
 	"easygoadmin/utils/gconv"
 	"errors"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -174,17 +173,7 @@ func (s *exampleService) Delete(ids string) (int64, error) {
 		return rows, nil
 	} else {
 		// 批量删除
-		count := 0
-		for _, v := range idsArr {
-			id, _ := strconv.Atoi(v)
-			entity := &model.Example{Id: id}
-			rows, err := entity.Delete()
-			if rows == 0 || err != nil {
-				continue
-			}
-			count++
-		}
-		return int64(count), nil
+		return 0, nil
 	}
 }
 

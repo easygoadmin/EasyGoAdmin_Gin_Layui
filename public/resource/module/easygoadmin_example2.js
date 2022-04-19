@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
-// | Author: 半城风雨 <easygoadmin@163.com>
+// | Author: @半城风雨
 // +----------------------------------------------------------------------
 // | 免责声明:
 // | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
@@ -18,7 +18,7 @@
 /**
  * 演示二管理
  * @author 半城风雨
- * @since 2021-12-01
+ * @since 2022-04-19
  */
 layui.use(['func'], function () {
 
@@ -46,8 +46,8 @@ layui.use(['func'], function () {
             , {field: 'sort', width: 100, title: '排序号', align: 'center'}
 
 
-            , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
-            , {field: 'update_time', width: 180, title: '更新时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.update_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'create_time', width: 180, title: '添加时间', align: 'center'}
+            , {field: 'update_time', width: 180, title: '更新时间', align: 'center'}
             , {fixed: 'right', width: 150, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 

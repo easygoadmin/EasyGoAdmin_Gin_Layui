@@ -39,7 +39,7 @@ func main() {
 	//router.HTMLRender = LoadTemplates("views")
 	//router.GET("level/index", controller.Level.Index)
 	//router.GET("position/index", controller.Position.Index)
-	//router.Run(":9199") // 监听并在 0.0.0.0:8080 上启动服务
+	//router.Run(":8080") // 监听并在 0.0.0.0:8080 上启动服务
 }
 
 func LoadTemplates(templatesDir string) multitemplate.Renderer {

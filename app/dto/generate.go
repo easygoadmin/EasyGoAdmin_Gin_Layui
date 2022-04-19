@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
-// | Author: 半城风雨 <easygoadmin@163.com>
+// | Author: @半城风雨
 // +----------------------------------------------------------------------
 // | 免责声明:
 // | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
@@ -35,4 +35,9 @@ type GeneratePageReq struct {
 type GenerateFileReq struct {
 	Name    string `form:"name"`    // 表名称
 	Comment string `form:"comment"` // 表描述
+}
+
+// 批量生成文件
+type BatchGenerateFileReq struct {
+	Tables string `form:"tables"` // 表名称
 }

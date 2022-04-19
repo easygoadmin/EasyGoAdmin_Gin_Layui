@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
-// | Author: 半城风雨 <easygoadmin@163.com>
+// | Author: @半城风雨
 // +----------------------------------------------------------------------
 // | 免责声明:
 // | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
@@ -346,6 +346,7 @@ func init() {
 		generate.GET("/index", controller.Generate.Index)
 		generate.POST("/list", controller.Generate.List)
 		generate.POST("/generate", controller.Generate.Generate)
+		generate.POST("/batchGenerate", controller.Generate.BatchGenerate)
 	}
 
 	/* 演示一 */
@@ -373,7 +374,7 @@ func init() {
 		example2.POST("/setStatus", controller.Example2.Status)
 	}
 	// 启动
-	router.Run(":9199")
+	router.Run(":8080")
 }
 
 func LoadTemplates(templatesDir string) multitemplate.Renderer {

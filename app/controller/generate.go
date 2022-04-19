@@ -5,7 +5,7 @@
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
-// | Author: 半城风雨 <easygoadmin@163.com>
+// | Author: @半城风雨
 // +----------------------------------------------------------------------
 // | 免责声明:
 // | 本软件框架禁止任何单位和个人用于任何违法、侵害他人合法利益等恶意的行为，禁止用于任何违
@@ -31,6 +31,8 @@ import (
 	"easygoadmin/utils/response"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 // 控制器管理对象
@@ -74,8 +76,17 @@ func (c *generateCtl) List(ctx *gin.Context) {
 }
 
 func (c *generateCtl) Generate(ctx *gin.Context) {
+	// 参数验证
+	var req dto.GenerateFileReq
+	if err := ctx.ShouldBind(&req); err != nil {
+		ctx.JSON(http.StatusOK, common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+		return
+	}
 	// 调用生成方法
-	err := service.Generate.Generate(ctx)
+	err := service.Generate.Generate(req, ctx)
 	if err != nil {
 		ctx.JSON(http.StatusOK, common.JsonResult{
 			Code: -1,
@@ -88,5 +99,38 @@ func (c *generateCtl) Generate(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, common.JsonResult{
 		Code: 0,
 		Msg:  "模块生成成功",
+	})
+}
+
+func (c *generateCtl) BatchGenerate(ctx *gin.Context) {
+	// 生成对象
+	var req *dto.BatchGenerateFileReq
+	if err := ctx.ShouldBind(&req); err != nil {
+		ctx.JSON(http.StatusOK, common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+		return
+	}
+	// 参数分析
+	tableList := strings.Split(req.Tables, ",")
+	count := 0
+	for _, item := range tableList {
+		itemList := strings.Split(item, "|")
+		// 组装参数对象
+		var param dto.GenerateFileReq
+		param.Name = itemList[0]
+		param.Comment = itemList[1]
+		// 调用生成方法
+		err := service.Generate.Generate(param, ctx)
+		if err != nil {
+			continue
+		}
+		count++
+	}
+	// 返回结果
+	ctx.JSON(http.StatusOK, common.JsonResult{
+		Code: 0,
+		Msg:  "本次共生成【" + strconv.Itoa(count) + "】个模块文件",
 	})
 }
