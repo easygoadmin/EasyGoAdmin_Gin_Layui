@@ -453,6 +453,8 @@ func LoadTemplates(templatesDir string) multitemplate.Renderer {
 			// 字典
 			dict, _ := filepath.Glob(templatesDir + "/includes/config/*.html")
 			files = append(files, dict...)
+		} else if strings.Contains(baseName, "user_info") {
+			files = append(files, include)
 		} else {
 			files = append(files, templatesDir+"/layouts/layout.html", include)
 		}
