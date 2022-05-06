@@ -370,7 +370,7 @@ func init() {
 		example2.POST("/setStatus", controller.Example2.Status)
 	}
 	// 启动
-	router.Run(":9199")
+	router.Run(":9097")
 }
 
 func LoadTemplates(templatesDir string) multitemplate.Renderer {

@@ -122,6 +122,9 @@ func (s *memberService) Add(req *dto.MemberAddReq, userId int) (int64, error) {
 	entity.Device = gconv.Int(req.Device)
 	entity.Source = gconv.Int(req.Source)
 	entity.Status = gconv.Int(req.Status)
+	entity.ProvinceCode = req.ProvinceCode
+	entity.CityCode = req.CityCode
+	entity.DistrictCode = req.DistrictCode
 	entity.CreateUser = userId
 	entity.CreateTime = time.Now().Unix()
 	entity.Mark = 1
@@ -169,6 +172,9 @@ func (s *memberService) Update(req *dto.MemberUpdateReq, userId int) (int64, err
 	entity.Device = gconv.Int(req.Device)
 	entity.Source = gconv.Int(req.Source)
 	entity.Status = gconv.Int(req.Status)
+	entity.ProvinceCode = req.ProvinceCode
+	entity.CityCode = req.CityCode
+	entity.DistrictCode = req.DistrictCode
 	entity.UpdateUser = userId
 	entity.UpdateTime = time.Now().Unix()
 

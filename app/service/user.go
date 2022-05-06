@@ -189,7 +189,7 @@ func (s *userService) Add(req *dto.UserAddReq, userId int) (int64, error) {
 			continue
 		}
 		var userRole model.UserRole
-		userRole.UserId = userId
+		userRole.UserId = entity.Id
 		userRole.RoleId = gconv.Int(v)
 		userRole.Insert()
 	}
@@ -258,7 +258,7 @@ func (s *userService) Update(req *dto.UserUpdateReq, userId int) (int64, error) 
 			continue
 		}
 		var userRole model.UserRole
-		userRole.UserId = userId
+		userRole.UserId = entity.Id
 		userRole.RoleId = gconv.Int(v)
 		userRole.Insert()
 	}

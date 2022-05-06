@@ -118,7 +118,7 @@ func (c *userCtl) Edit(ctx *gin.Context) {
 
 		// 角色ID
 		var userRoleList []model.UserRole
-		utils.XormDb.Where("user_id=?", utils.Uid(ctx)).Find(&userRoleList)
+		utils.XormDb.Where("user_id=?", info.Id).Find(&userRoleList)
 		roleIds := make([]interface{}, 0)
 		for _, v := range userRoleList {
 			roleIds = append(roleIds, v.RoleId)

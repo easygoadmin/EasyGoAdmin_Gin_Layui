@@ -139,13 +139,6 @@ func (s *linkService) Update(req *dto.LinkUpdateReq, userId int) (int64, error) 
 		return 0, err
 	}
 
-	// 保存图片
-	image, err := utils.SaveImage(req.Image, "link")
-	if err != nil {
-		return 0, err
-	}
-	entity.Image = image
-
 	// 设置对象
 	entity.Name = req.Name
 	entity.Type = gconv.Int(req.Type)
