@@ -1,4 +1,14 @@
 // +----------------------------------------------------------------------
+// | EasyGoAdmin敏捷开发框架 [ 赋能开发者，助力企业发展 ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2022 深圳EasyGoAdmin研发中心
+// +----------------------------------------------------------------------
+// | Licensed LGPL-3.0 EasyGoAdmin并不是自由软件，未经许可禁止去掉相关版权
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: @半城风雨 团队荣誉出品 团队荣誉出品
+// +----------------------------------------------------------------------
 // | 版权和免责声明:
 // | 本团队对该软件框架产品拥有知识产权（包括但不限于商标权、专利权、著作权、商业秘密等）
 // | 均受到相关法律法规的保护，任何个人、组织和单位不得在未经本团队书面授权的情况下对所授权
@@ -45,12 +55,12 @@ type LinkAddReq struct {
 
 // 修改友链
 type LinkUpdateReq struct {
-	Id       string `form:"id" binding:"required"`
-	Name     string `form:"name"        binding:"required"` // 友链名称
-	Type     string `form:"type"        binding:"required"` // 类型：1友情链接 2合作伙伴
-	Url      string `form:"url"`                            // 友链地址
-	ItemId   string `form:"itemId"`                         // 站点ID
-	CateId   string `form:"cateId"`                         // 栏目ID
+	Id     string `form:"id" binding:"required"`
+	Name   string `form:"name"        binding:"required"`   // 友链名称
+	Type   string `form:"type"        binding:"required"`   // 类型：1友情链接 2合作伙伴
+	Url    string `form:"url"`                              // 友链地址
+	ItemId string `form:"itemId"`                           // 站点ID
+	CateId string `form:"cateId"`                           // 栏目ID
 	Platform string `form:"platform"    binding:"required"` // 平台：1PC站 2WAP站 3微信小程序 4APP应用
 	Form     string `form:"form"        binding:"required"` // 友链形式：1文字链接 2图片链接
 	Image    string `form:"image"`                          // 友链图片
