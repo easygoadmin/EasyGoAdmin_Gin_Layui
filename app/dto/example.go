@@ -39,19 +39,19 @@ type ExamplePageReq struct {
 
 // 添加演示一
 type ExampleAddReq struct {
-	Name string `form:"name"        binding:"required"` // 测试名称
+	Name string `form:"name" binding:"required"` // 测试名称
 
-	Avatar string `form:"avatar"      binding:"required"` // 头像
+	Avatar string `form:"avatar" binding:"required"` // 头像
 
-	Content string `form:"content"        binding:"required"` // 内容
+	Content string `form:"content" binding:"required"` // 内容
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	Status string `form:"status" binding:"required"` // 状态：1正常 2停用
 
-	Type string `form:"type"        binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
+	Type string `form:"type" binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
 
-	IsVip string `form:"isVip"        binding:"required"` // 是否VIP：1是 2否
+	IsVip string `form:"isVip" binding:"required"` // 是否VIP：1是 2否
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	Sort string `form:"sort" binding:"required"` // 排序号
 
 }
 
@@ -59,19 +59,19 @@ type ExampleAddReq struct {
 type ExampleUpdateReq struct {
 	Id string `form:"id" binding:"required"`
 
-	Name string `form:"name"        binding:"required"` // 测试名称
+	Name string `form:"name" binding:"required"` // 测试名称
 
-	Avatar string `form:"avatar"      binding:"required"` // 头像
+	Avatar string `form:"avatar" binding:"required"` // 头像
 
-	Content string `form:"content"        binding:"required"` // 内容
+	Content string `form:"content" binding:"required"` // 内容
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	Status string `form:"status" binding:"required"` // 状态：1正常 2停用
 
-	Type string `form:"type"        binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
+	Type string `form:"type" binding:"required"` // 类型：1京东 2淘宝 3拼多多 4唯品会
 
-	IsVip string `form:"isVip"        binding:"required"` // 是否VIP：1是 2否
+	IsVip string `form:"isVip" binding:"required"` // 是否VIP：1是 2否
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	Sort string `form:"sort" binding:"required"` // 排序号
 
 }
 

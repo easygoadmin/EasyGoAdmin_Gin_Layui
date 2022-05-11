@@ -38,13 +38,13 @@ type MemberLevelPageReq struct {
 
 // 添加会员等级
 type MemberLevelAddReq struct {
-	Name string `form:"name"        binding:"required"` // 级别名称
-	Sort string `form:"sort"`                           // 排序号
+	Name string `form:"name" binding:"required"` // 级别名称
+	Sort string `form:"sort"`                    // 排序号
 }
 
 // 更新会员等级
 type MemberLevelUpdateReq struct {
 	Id   string `form:"id" binding:"required"`
-	Name string `form:"name"        binding:"required"` // 级别名称
-	Sort string `form:"sort"`                           // 排序号
+	Name string `form:"name" binding:"required"` // 级别名称
+	Sort string `form:"sort"`                    // 排序号
 }

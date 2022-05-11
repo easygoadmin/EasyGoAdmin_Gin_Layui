@@ -39,31 +39,31 @@ type ConfigDataPageReq struct {
 
 // 添加字典项
 type ConfigDataAddReq struct {
-	Title    string `form:"title"       binding:"required"` // 配置标题
-	Code     string `form:"code"        binding:"required"` // 配置编码
-	Value    string `form:"value"`                          // 配置值
-	Options  string `form:"options"`                        // 配置项
-	ConfigId string `form:"configId"   binding:"required"`  // 配置ID
-	Type     string `form:"type"        binding:"required"` // 配置类型
-	Sort     string `form:"sort"`                           // 排序
-	Note     string `form:"note"`                           // 配置说明
+	Title    string `form:"title" binding:"required"`    // 配置标题
+	Code     string `form:"code" binding:"required"`     // 配置编码
+	Value    string `form:"value"`                       // 配置值
+	Options  string `form:"options"`                     // 配置项
+	ConfigId string `form:"configId" binding:"required"` // 配置ID
+	Type     string `form:"type" binding:"required"`     // 配置类型
+	Sort     string `form:"sort"`                        // 排序
+	Note     string `form:"note"`                        // 配置说明
 }
 
 // 更新字典项
 type ConfigDataUpdateReq struct {
-	Id    string `form:"id" binding:"required"`
-	Title string `form:"title"       binding:"required"`    // 配置标题
-	Code  string `form:"code"        binding:"required"` // 配置编码
-	Value    string `form:"value"`                          // 配置值
-	Options  string `form:"options"`                        // 配置项
-	ConfigId string `form:"configId"   binding:"required"`  // 配置ID
-	Type     string `form:"type"        binding:"required"` // 配置类型
-	Sort     string `form:"sort"`                           // 排序
-	Note     string `form:"note"`                           // 配置说明
+	Id       string `form:"id" binding:"required"`
+	Title    string `form:"title" binding:"required"`    // 配置标题
+	Code     string `form:"code" binding:"required"`     // 配置编码
+	Value    string `form:"value"`                       // 配置值
+	Options  string `form:"options"`                     // 配置项
+	ConfigId string `form:"configId" binding:"required"` // 配置ID
+	Type     string `form:"type" binding:"required"`     // 配置类型
+	Sort     string `form:"sort"`                        // 排序
+	Note     string `form:"note"`                        // 配置说明
 }
 
 // 设置状态
 type ConfigDataStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }

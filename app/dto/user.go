@@ -50,7 +50,7 @@ type UserAddReq struct {
 	LevelId      string `form:"levelId" binding:"required"`
 	PositionId   string `form:"positionId" binding:"required"`
 	ProvinceCode string `form:"provinceCode" binding:"required"` // 省份编号
-	CityCode     string `form:"cityCode"     binding:"required"` // 市区编号
+	CityCode     string `form:"cityCode" binding:"required"`     // 市区编号
 	DistrictCode string `form:"districtCode" binding:"required"` // 区县编号
 	Address      string `form:"address"`
 	Username     string `form:"username" binding:"required"`
@@ -76,7 +76,7 @@ type UserUpdateReq struct {
 	LevelId      string `form:"levelId" binding:"required"`
 	PositionId   string `form:"positionId" binding:"required"`
 	ProvinceCode string `form:"provinceCode" binding:"required"` // 省份编号
-	CityCode     string `form:"cityCode"     binding:"required"` // 市区编号
+	CityCode     string `form:"cityCode" binding:"required"`     // 市区编号
 	DistrictCode string `form:"districtCode" binding:"required"` // 区县编号
 	Address      string `form:"address"`
 	Username     string `form:"username" binding:"required"`
@@ -91,7 +91,7 @@ type UserUpdateReq struct {
 // 设置状态
 type UserStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }
 
 // 重置密码
@@ -106,19 +106,19 @@ type CheckUserReq struct {
 
 // 更新密码
 type UpdatePwd struct {
-	OldPassword string `form:"oldPassword"      binding:"required"` // 旧密码
-	NewPassword string `form:"newPassword"      binding:"required"` // 新密码
-	RePassword  string `form:"rePassword"       binding:"required"` // 确认密码
+	OldPassword string `form:"oldPassword" binding:"required"` // 旧密码
+	NewPassword string `form:"newPassword" binding:"required"` // 新密码
+	RePassword  string `form:"rePassword" binding:"required"`  // 确认密码
 }
 
 // 用户中心
 type UserInfoReq struct {
-	Avatar   string `form:"avatar"`                           // 头像
-	Realname string `form:"realname"      binding:"required"` // 真实姓名
-	Nickname string `form:"nickname"      binding:"required"` // 昵称
-	Gender   string `form:"gender"        binding:"required"` // 性别:1男 2女 3保密
-	Mobile   string `form:"mobile"        binding:"required"` // 手机号码
-	Email    string `form:"email"         binding:"required"` // 邮箱地址
-	Address  string `form:"address"`                          // 详细地址
-	Intro    string `form:"intro"`                            // 个人简介
+	Avatar   string `form:"avatar"`                      // 头像
+	Realname string `form:"realname" binding:"required"` // 真实姓名
+	Nickname string `form:"nickname" binding:"required"` // 昵称
+	Gender   string `form:"gender" binding:"required"`   // 性别:1男 2女 3保密
+	Mobile   string `form:"mobile" binding:"required"`   // 手机号码
+	Email    string `form:"email" binding:"required"`    // 邮箱地址
+	Address  string `form:"address"`                     // 详细地址
+	Intro    string `form:"intro"`                       // 个人简介
 }

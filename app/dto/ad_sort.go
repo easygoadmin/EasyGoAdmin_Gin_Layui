@@ -39,10 +39,10 @@ type AdSortPageReq struct {
 // 添加广告位
 type AdSortAddReq struct {
 	Description string `form:"description" binding:"required"` // 广告位描述
-	ItemId      string `form:"itemId"     binding:"required"`  // 站点ID
-	CateId      string `form:"cateId"     binding:"required"`  // 栏目ID
-	LocId       string `form:"locId"      binding:"required"`  // 广告页面位置
-	Platform    string `form:"platform"    binding:"required"` // 站点类型：1PC网站 2WAP手机站 3微信小程序 4APP移动端
+	ItemId      string `form:"itemId" binding:"required"`      // 站点ID
+	CateId      string `form:"cateId" binding:"required"`      // 栏目ID
+	LocId       string `form:"locId" binding:"required"`       // 广告页面位置
+	Platform    string `form:"platform" binding:"required"`    // 站点类型：1PC网站 2WAP手机站 3微信小程序 4APP移动端
 	Sort        string `form:"sort"`                           // 广告位排序
 }
 
@@ -50,9 +50,9 @@ type AdSortAddReq struct {
 type AdSortUpdateReq struct {
 	Id          string `form:"id" binding:"required"`
 	Description string `form:"description" binding:"required"` // 广告位描述
-	ItemId      string `form:"itemId"     binding:"required"`  // 站点ID
-	CateId      string `form:"cateId"     binding:"required"`  // 栏目ID
-	LocId       string `form:"locId"      binding:"required"`  // 广告页面位置
-	Platform    string `form:"platform"    binding:"required"` // 站点类型：1PC网站 2WAP手机站 3微信小程序 4APP移动端
+	ItemId      string `form:"itemId" binding:"required"`      // 站点ID
+	CateId      string `form:"cateId" binding:"required"`      // 栏目ID
+	LocId       string `form:"locId" binding:"required"`       // 广告页面位置
+	Platform    string `form:"platform" binding:"required"`    // 站点类型：1PC网站 2WAP手机站 3微信小程序 4APP移动端
 	Sort        string `form:"sort"`                           // 广告位排序
 }

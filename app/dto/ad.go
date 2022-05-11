@@ -38,18 +38,18 @@ type AdPageReq struct {
 
 // 添加广告
 type AdAddReq struct {
-	Title       string `form:"title"       binding:"required"` // 广告标题
-	AdSortId    string `form:"adSortId"  binding:"required"`   // 广告位ID
+	Title       string `form:"title" binding:"required"`       // 广告标题
+	AdSortId    string `form:"adSortId" binding:"required"`    // 广告位ID
 	Cover       string `form:"cover"`                          // 广告图片
-	Type        string `form:"type"        binding:"required"` // 广告格式：1图片 2文字 3视频 4推荐
+	Type        string `form:"type" binding:"required"`        // 广告格式：1图片 2文字 3视频 4推荐
 	Description string `form:"description" binding:"required"` // 广告描述
 	Content     string `form:"content"`                        // 广告内容
-	Url         string `form:"url"         binding:"required"` // 广告链接
+	Url         string `form:"url" binding:"required"`         // 广告链接
 	Width       string `form:"width"`                          // 广告宽度
 	Height      string `form:"height"`                         // 广告高度
-	StartTime   string `form:"startTime"  binding:"required"`  // 开始时间
-	EndTime     string `form:"endTime"    binding:"required"`  // 结束时间
-	Status      string `form:"status"      binding:"required"` // 状态：1在用 2停用
+	StartTime   string `form:"startTime" binding:"required"`   // 开始时间
+	EndTime     string `form:"endTime" binding:"required"`     // 结束时间
+	Status      string `form:"status" binding:"required"`      // 状态：1在用 2停用
 	Sort        string `form:"sort"`                           // 排序
 	Note        string `form:"note"`                           // 备注
 }
@@ -57,18 +57,18 @@ type AdAddReq struct {
 // 更新广告
 type AdUpdateReq struct {
 	Id          string `form:"id" binding:"required"`
-	Title       string `form:"title"       binding:"required"` // 广告标题
-	AdSortId    string `form:"adSortId"  binding:"required"`   // 广告位ID
+	Title       string `form:"title" binding:"required"`       // 广告标题
+	AdSortId    string `form:"adSortId" binding:"required"`    // 广告位ID
 	Cover       string `form:"cover"`                          // 广告图片
-	Type        string `form:"type"        binding:"required"` // 广告格式：1图片 2文字 3视频 4推荐
+	Type        string `form:"type" binding:"required"`        // 广告格式：1图片 2文字 3视频 4推荐
 	Description string `form:"description" binding:"required"` // 广告描述
 	Content     string `form:"content"`                        // 广告内容
-	Url         string `form:"url"         binding:"required"` // 广告链接
+	Url         string `form:"url" binding:"required"`         // 广告链接
 	Width       string `form:"width"`                          // 广告宽度
 	Height      string `form:"height"`                         // 广告高度
-	StartTime   string `form:"startTime"  binding:"required"`  // 开始时间
-	EndTime     string `form:"endTime"    binding:"required"`  // 结束时间
-	Status      string `form:"status"      binding:"required"` // 状态：1在用 2停用
+	StartTime   string `form:"startTime" binding:"required"`   // 开始时间
+	EndTime     string `form:"endTime" binding:"required"`     // 结束时间
+	Status      string `form:"status" binding:"required"`      // 状态：1在用 2停用
 	Sort        string `form:"sort"`                           // 排序
 	Note        string `form:"note"`                           // 备注
 }
@@ -76,5 +76,5 @@ type AdUpdateReq struct {
 // 设置状态
 type AdStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }

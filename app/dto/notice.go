@@ -39,25 +39,25 @@ type NoticePageReq struct {
 
 // 添加通知公告
 type NoticeAddReq struct {
-	Title   string `form:"title"       binding:"required"` // 通知标题
-	Content string `form:"content"     binding:"required"` // 通知内容
-	Source  string `form:"source"      binding:"required"` // 来源：1内部通知 2外部新闻
-	IsTop   string `form:"isTop"      binding:"required"`  // 是否置顶：1是 2否
-	Status  string `form:"status"      binding:"required"` // 状态：1已发布 2待发布
+	Title   string `form:"title" binding:"required"`   // 通知标题
+	Content string `form:"content" binding:"required"` // 通知内容
+	Source  string `form:"source" binding:"required"`  // 来源：1内部通知 2外部新闻
+	IsTop   string `form:"isTop" binding:"required"`   // 是否置顶：1是 2否
+	Status  string `form:"status" binding:"required"`  // 状态：1已发布 2待发布
 }
 
 // 更新通知公告
 type NoticeUpdateReq struct {
-	Id      string `form:"id"		   binding:"required"`
-	Title   string `form:"title"       binding:"required"` // 通知标题
-	Content string `form:"content"     binding:"required"` // 通知内容
-	Source  string `form:"source"      binding:"required"` // 来源：1内部通知 2外部新闻
-	IsTop   string `form:"isTop"      binding:"required"`  // 是否置顶：1是 2否
-	Status  string `form:"status"      binding:"required"` // 状态：1已发布 2待发布
+	Id      string `form:"id" binding:"required"`
+	Title   string `form:"title" binding:"required"`   // 通知标题
+	Content string `form:"content" binding:"required"` // 通知内容
+	Source  string `form:"source" binding:"required"`  // 来源：1内部通知 2外部新闻
+	IsTop   string `form:"isTop" binding:"required"`   // 是否置顶：1是 2否
+	Status  string `form:"status" binding:"required"`  // 状态：1已发布 2待发布
 }
 
 // 设置状态
 type NoticeStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }

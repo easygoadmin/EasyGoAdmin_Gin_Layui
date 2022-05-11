@@ -40,8 +40,8 @@ type DictDataPageReq struct {
 // 添加字典项
 type DictDataAddReq struct {
 	Name   string `form:"name,unique" binding:"required"` // 字典项名称
-	Code   string `form:"code"        binding:"required"` // 字典项值
-	DictId string `form:"dictId"     binding:"required"`  // 字典类型ID
+	Code   string `form:"code" binding:"required"`        // 字典项值
+	DictId string `form:"dictId" binding:"required"`      // 字典类型ID
 	Note   string `form:"note"`                           // 备注
 	Sort   string `form:"sort"`                           // 显示顺序
 }
@@ -50,8 +50,8 @@ type DictDataAddReq struct {
 type DictDataUpdateReq struct {
 	Id     string `form:"id" binding:"required"`
 	Name   string `form:"name,unique" binding:"required"` // 字典项名称
-	Code   string `form:"code"        binding:"required"` // 字典项值
-	DictId string `form:"dictId"     binding:"required"`  // 字典类型ID
+	Code   string `form:"code" binding:"required"`        // 字典项值
+	DictId string `form:"dictId" binding:"required"`      // 字典类型ID
 	Note   string `form:"note"`                           // 备注
 	Sort   string `form:"sort"`                           // 显示顺序
 }

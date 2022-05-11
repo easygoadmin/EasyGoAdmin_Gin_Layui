@@ -35,11 +35,11 @@ type Example2PageReq struct {
 
 // 添加演示二
 type Example2AddReq struct {
-	Name string `form:"name"        binding:"required"` // 演示名称
+	Name string `form:"name" binding:"required"` // 演示名称
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	Status string `form:"status" binding:"required"` // 状态：1正常 2停用
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	Sort string `form:"sort" binding:"required"` // 排序号
 
 }
 
@@ -47,11 +47,11 @@ type Example2AddReq struct {
 type Example2UpdateReq struct {
 	Id string `form:"id" binding:"required"`
 
-	Name string `form:"name"        binding:"required"` // 演示名称
+	Name string `form:"name" binding:"required"` // 演示名称
 
-	Status string `form:"status"        binding:"required"` // 状态：1正常 2停用
+	Status string `form:"status" binding:"required"` // 状态：1正常 2停用
 
-	Sort string `form:"sort"        binding:"required"` // 排序号
+	Sort string `form:"sort" binding:"required"` // 排序号
 
 }
 

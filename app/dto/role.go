@@ -38,8 +38,8 @@ type RolePageReq struct {
 
 // 添加角色
 type RoleAddReq struct {
-	Name string `form:"name" binding:"required"`
-	Code string `form:"code" binding:"required"`
+	Name   string `form:"name" binding:"required"`
+	Code   string `form:"code" binding:"required"`
 	Status string `form:"status" binding:"required"`
 	Sort   string `form:"sort"`
 	Note   string `form:"note"`
@@ -58,5 +58,5 @@ type RoleUpdateReq struct {
 // 设置状态
 type RoleStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }

@@ -54,5 +54,5 @@ type PositionUpdateReq struct {
 // 设置状态
 type PositionStatusReq struct {
 	Id     string `form:"id" binding:"required"`
-	Status string `form:"status"    binding:"required"`
+	Status string `form:"status" binding:"required"`
 }

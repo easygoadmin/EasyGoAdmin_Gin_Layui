@@ -36,29 +36,29 @@ type ItemCateQueryReq struct {
 
 // 添加站点
 type ItemCateAddReq struct {
-	Name    string `form:"name"        binding:"required"` // 栏目名称
-	Pid     string `form:"pid"`                            // 父级ID
-	ItemId  string `form:"itemId"     binding:"required"`  // 站点ID
-	Pinyin  string `form:"pinyin"      binding:"required"` // 拼音(全)
-	Code    string `form:"code"        binding:"required"` // 拼音(简)
-	IsCover string `form:"isCover"    binding:"required"`  // 是否有封面：1是 2否
-	Cover   string `form:"cover"`                          // 封面
-	Status  string `form:"status"      binding:"required"` // 状态：1启用 2停用
-	Note    string `form:"note"`                           // 备注
-	Sort    string `form:"sort"`                           // 排序
+	Name    string `form:"name" binding:"required"`    // 栏目名称
+	Pid     string `form:"pid"`                        // 父级ID
+	ItemId  string `form:"itemId" binding:"required"`  // 站点ID
+	Pinyin  string `form:"pinyin" binding:"required"`  // 拼音(全)
+	Code    string `form:"code" binding:"required"`    // 拼音(简)
+	IsCover string `form:"isCover" binding:"required"` // 是否有封面：1是 2否
+	Cover   string `form:"cover"`                      // 封面
+	Status  string `form:"status" binding:"required"`  // 状态：1启用 2停用
+	Note    string `form:"note"`                       // 备注
+	Sort    string `form:"sort"`                       // 排序
 }
 
 // 修改
 type ItemCateUpdateReq struct {
 	Id      string `form:"id" binding:"required"`
-	Name    string `form:"name"        binding:"required"` // 栏目名称
-	Pid     string `form:"pid"`                            // 父级ID
-	ItemId  string `form:"itemId"     binding:"required"`  // 站点ID
-	Pinyin  string `form:"pinyin"      binding:"required"` // 拼音(全)
-	Code    string `form:"code"        binding:"required"` // 拼音(简)
-	IsCover string `form:"isCover"    binding:"required"`  // 是否有封面：1是 2否
-	Cover   string `form:"cover"`                          // 封面
-	Status  string `form:"status"      binding:"required"` // 状态：1启用 2停用
-	Note    string `form:"note"`                           // 备注
-	Sort    string `form:"sort"`                           // 排序
+	Name    string `form:"name" binding:"required"`    // 栏目名称
+	Pid     string `form:"pid"`                        // 父级ID
+	ItemId  string `form:"itemId" binding:"required"`  // 站点ID
+	Pinyin  string `form:"pinyin" binding:"required"`  // 拼音(全)
+	Code    string `form:"code" binding:"required"`    // 拼音(简)
+	IsCover string `form:"isCover" binding:"required"` // 是否有封面：1是 2否
+	Cover   string `form:"cover"`                      // 封面
+	Status  string `form:"status" binding:"required"`  // 状态：1启用 2停用
+	Note    string `form:"note"`                       // 备注
+	Sort    string `form:"sort"`                       // 排序
 }

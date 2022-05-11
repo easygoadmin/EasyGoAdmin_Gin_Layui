@@ -38,33 +38,33 @@ type MenuQueryReq struct {
 
 // 添加菜单
 type MenuAddReq struct {
-	Name       string `form:"name"       binding:"required"`  // 菜单标题
-	Icon       string `form:"icon"        binding:"required"` // 图标
-	Url        string `form:"url"        binding:"required"`  // URL地址
-	Pid        string `form:"pid"`                            // 上级ID
-	Type       string `form:"type"`                           // 类型：1模块 2导航 3菜单 4节点
-	Permission string `form:"permission"`                     // 权限标识
-	Status     string `form:"status"      binding:"required"` // 状态：1正常 2禁用
-	Target     string `form:"target"`                         // 打开方式：1内部打开 2外部打开
-	Note       string `form:"note"`                           // 菜单备注
-	Sort       string `form:"sort"`                           // 显示顺序
-	Func       string `form:"func"`                           // 权限节点
+	Name       string `form:"name" binding:"required"`   // 菜单标题
+	Icon       string `form:"icon" binding:"required"`   // 图标
+	Url        string `form:"url" binding:"required"`    // URL地址
+	Pid        string `form:"pid"`                       // 上级ID
+	Type       string `form:"type"`                      // 类型：1模块 2导航 3菜单 4节点
+	Permission string `form:"permission"`                // 权限标识
+	Status     string `form:"status" binding:"required"` // 状态：1正常 2禁用
+	Target     string `form:"target"`                    // 打开方式：1内部打开 2外部打开
+	Note       string `form:"note"`                      // 菜单备注
+	Sort       string `form:"sort"`                      // 显示顺序
+	Func       string `form:"func"`                      // 权限节点
 }
 
 // 更新菜单
 type MenuUpdateReq struct {
-	Id         string `form:"id" 		   binding:"required"`
-	Name       string `form:"name"       binding:"required"`  // 菜单标题
-	Icon       string `form:"icon"        binding:"required"` // 图标
-	Url        string `form:"url"        binding:"required"`  // URL地址
-	Pid        string `form:"pid"`                            // 上级ID
-	Type       string `form:"type"`                           // 类型：1模块 2导航 3菜单 4节点
-	Permission string `form:"permission"`                     // 权限标识
-	Status     string `form:"status"      binding:"required"` // 状态：1正常 2禁用
-	Target     string `form:"target"`                         // 打开方式：1内部打开 2外部打开
-	Note       string `form:"note"`                           // 菜单备注
-	Sort       string `form:"sort"`                           // 显示顺序
-	Func       string `form:"func"`                           // 权限节点
+	Id         string `form:"id" binding:"required"`
+	Name       string `form:"name" binding:"required"`   // 菜单标题
+	Icon       string `form:"icon" binding:"required"`   // 图标
+	Url        string `form:"url" binding:"required"`    // URL地址
+	Pid        string `form:"pid"`                       // 上级ID
+	Type       string `form:"type"`                      // 类型：1模块 2导航 3菜单 4节点
+	Permission string `form:"permission"`                // 权限标识
+	Status     string `form:"status" binding:"required"` // 状态：1正常 2禁用
+	Target     string `form:"target"`                    // 打开方式：1内部打开 2外部打开
+	Note       string `form:"note"`                      // 菜单备注
+	Sort       string `form:"sort"`                      // 显示顺序
+	Func       string `form:"func"`                      // 权限节点
 }
 
 // 菜单信息
