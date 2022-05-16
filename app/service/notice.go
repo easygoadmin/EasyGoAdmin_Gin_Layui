@@ -87,10 +87,13 @@ func (s *noticeService) Add(req *dto.NoticeAddReq, userId int) (int64, error) {
 	if utils.AppDebug() {
 		return 0, errors.New("演示环境，暂无权限操作")
 	}
+
+	// 富文本处理
+	content := utils.SaveImageContent(req.Content, req.Title, "notice")
 	// 实例化对象
 	var entity model.Notice
 	entity.Title = req.Title
-	entity.Content = req.Content
+	entity.Content = content
 	entity.IsTop = gconv.Int(req.IsTop)
 	entity.Source = gconv.Int(req.Source)
 	entity.Status = gconv.Int(req.Status)
@@ -113,9 +116,12 @@ func (s *noticeService) Update(req *dto.NoticeUpdateReq, userId int) (int64, err
 		return 0, err
 	}
 
+	// 富文本处理
+	content := utils.SaveImageContent(req.Content, req.Title, "notice")
+
 	// 设置参数
 	entity.Title = req.Title
-	entity.Content = req.Content
+	entity.Content = content
 	entity.IsTop = gconv.Int(req.IsTop)
 	entity.Source = gconv.Int(req.Source)
 	entity.Status = gconv.Int(req.Status)

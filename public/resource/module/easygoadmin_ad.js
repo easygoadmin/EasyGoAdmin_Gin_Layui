@@ -72,8 +72,8 @@ layui.use(['func'], function () {
             , {field: 'size', width: 150, title: '广告尺寸(宽x高)', align: 'center', templet: function (d) {
                     return d.width + " x " + d.height
                 }}
-            , {field: 'startTime', width: 180, title: '开始时间', align: 'center'}
-            , {field: 'endTime', width: 180, title: '结束时间', align: 'center'}
+            , {field: 'startTime', width: 180, title: '开始时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.startTime*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+            , {field: 'endTime', width: 180, title: '结束时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.endTime*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
             , {field: 'viewNum', width: 100, title: '点击率', align: 'center'}
             , {field: 'sort', width: 100, title: '排序', align: 'center'}
             , {field: 'create_time', width: 180, title: '添加时间', align: 'center', templet:"<div>{{layui.util.toDateString(d.create_time*1000, 'yyyy-MM-dd HH:mm:ss')}}</div>"}

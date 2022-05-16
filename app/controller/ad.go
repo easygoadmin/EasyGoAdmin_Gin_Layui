@@ -39,6 +39,7 @@ import (
 	"easygoadmin/utils/response"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strings"
 )
 
 var Ad = new(adCtl)
@@ -97,6 +98,11 @@ func (c *adCtl) Edit(ctx *gin.Context) {
 		// 广告图片
 		if info.Cover != "" {
 			info.Cover = utils.GetImageUrl(info.Cover)
+		}
+
+		// 富文本图片替换处理
+		if info.Content != "" {
+			info.Content = strings.ReplaceAll(info.Content, "[IMG_URL]", utils.ImageUrl())
 		}
 
 		// 广告位列表

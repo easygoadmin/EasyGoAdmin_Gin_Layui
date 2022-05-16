@@ -100,13 +100,17 @@ func (s *adService) Add(req *dto.AdAddReq, userId int) (int64, error) {
 	if utils.AppDebug() {
 		return 0, errors.New("演示环境，暂无权限操作")
 	}
+
+	// 富文本处理
+	content := utils.SaveImageContent(req.Content, req.Title, "ad")
+
 	// 实例化对象
 	var entity model.Ad
 	entity.Title = req.Title
 	entity.AdSortId = gconv.Int(req.AdSortId)
 	entity.Type = gconv.Int(req.Type)
 	entity.Description = req.Description
-	entity.Content = req.Content
+	entity.Content = content
 	entity.Url = req.Url
 	entity.Width = gconv.Int(req.Width)
 	entity.Height = gconv.Int(req.Height)
@@ -150,12 +154,15 @@ func (s *adService) Update(req *dto.AdUpdateReq, userId int) (int64, error) {
 		return 0, err
 	}
 
+	// 富文本处理
+	content := utils.SaveImageContent(req.Content, req.Title, "ad")
+
 	// 设置对象
 	entity.Title = req.Title
 	entity.AdSortId = gconv.Int(req.AdSortId)
 	entity.Type = gconv.Int(req.Type)
 	entity.Description = req.Description
-	entity.Content = req.Content
+	entity.Content = content
 	entity.Url = req.Url
 	entity.Width = gconv.Int(req.Width)
 	entity.Height = gconv.Int(req.Height)

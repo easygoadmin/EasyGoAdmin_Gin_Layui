@@ -39,6 +39,7 @@ import (
 	"easygoadmin/utils/response"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strings"
 )
 
 var Notice = new(noticeCtl)
@@ -95,6 +96,12 @@ func (c *noticeCtl) Edit(ctx *gin.Context) {
 			})
 			return
 		}
+
+		// 富文本图片替换处理
+		if info.Content != "" {
+			info.Content = strings.ReplaceAll(info.Content, "[IMG_URL]", utils.ImageUrl())
+		}
+
 		// 渲染模板
 		response.BuildTpl(ctx, "notice_edit.html").WriteTpl(gin.H{
 			"info":       info,
